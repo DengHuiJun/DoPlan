@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zero.doplan.MainActivity">
+
+
+    <FrameLayout
+        android:id="@+id/main_content_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <LinearLayout
+        android:id="@+id/bottom_bar_ly"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_main_bottom"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/bottom_plan_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/main_bottom_click_bg"
+            android:text="计划" />
+
+        <TextView
+            android:id="@+id/bottom_add_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/main_bottom_click_bg"
+            android:text="添加"  />
+
+        <TextView
+            android:id="@+id/bottom_me_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/main_bottom_click_bg"
+            android:text="我的"  />
+
+    </LinearLayout>
+
+</RelativeLayout>
