@@ -5,21 +5,51 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".AppContext"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_app"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
+
+        <service android:name=".sync.AuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <provider
+            android:name=".sync.SyncContentProvider"
+            android:authorities="${applicationId}.provider.sync"
+            android:exported="false"
+            android:syncable="true" />
+
+        <service
+            android:name=".sync.SyncService"
+            android:exported="true"
+            android:process=":sync">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
     </application>
-
-
-
 
 </manifest>

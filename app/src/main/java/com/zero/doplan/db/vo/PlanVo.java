@@ -1,4 +1,4 @@
-package com.zero.doplan;
+package com.zero.doplan.db.vo;
 
 /**
  * Created by Allen.D on 17/2/19.
