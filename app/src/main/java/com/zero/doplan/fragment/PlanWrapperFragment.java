@@ -3,6 +3,7 @@ package com.zero.doplan.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -13,43 +14,44 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zero.doplan.R;
-import com.google.android.gms.plus.PlusOneButton;
+import com.zero.doplan.db.DaoHelper;
+import com.zero.doplan.db.entity.Plan;
+import com.zero.doplan.greendao.PlanDao;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 正在计划的Fragment
  */
-public class PlaningFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
+public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanChangeListener {
 
-    private ViewPager mViewPager;
-    private TextView mCountTv;
+    @BindView(R.id.plan_wrapper_vp) ViewPager mViewPager;
+    @BindView(R.id.plan_count_tv) TextView mCountTv;
+
     private PlanAdapter mAdapter;
 
     private OnFragmentInteractionListener mListener;
 
-    public PlaningFragment() {
-        // Required empty public constructor
+    private List<Plan> mPlanList;
+
+    private PlanDao mPlanDao;
+
+    public PlanWrapperFragment() {
+        mPlanDao = DaoHelper.getPlanDao();
+        refreshData();
     }
 
-    public static PlaningFragment newInstance(String param1, String param2) {
-        PlaningFragment fragment = new PlaningFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private void refreshData() {
+        mPlanList = mPlanDao.loadAll();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -57,10 +59,43 @@ public class PlaningFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_planing, container, false);
-        mViewPager = (ViewPager) view.findViewById(R.id.plan_vp);
-        mCountTv = (TextView) view.findViewById(R.id.plan_count_tv);
+        ButterKnife.bind(this, view);
 
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mAdapter = new PlanAdapter(getFragmentManager());
+        mViewPager.setAdapter(mAdapter);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                setCountTv(position);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setCountTv(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+    }
+
+    private void setCountTv(int position) {
+        if (mPlanList != null && !mPlanList.isEmpty()) {
+            int total = mPlanList.size();
+            String countTip = (position + 1) + "/" + total;
+            mCountTv.setText(countTip);
+        }
     }
 
     @Override
@@ -86,6 +121,11 @@ public class PlaningFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onPlanChange(int pos) {
+
+    }
+
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
@@ -98,12 +138,12 @@ public class PlaningFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return null;
+            return PlanFragment.newInstance(mPlanList.get(position).getPlanId(), position);
         }
 
         @Override
         public int getCount() {
-            return 0;
+            return mPlanList.size();
         }
     }
 
