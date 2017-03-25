@@ -15,4 +15,6 @@
     <color name="colorGreen">#0a8f08</color>
     <color name="colorRed">#d01701</color>
 
+    <color name="toolbarSelectBg">#FFFFFF</color>
+
 </resources>

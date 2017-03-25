@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.zero.doplan.MainActivity">
 
+    <include layout="@layout/activity_main_toolbar" />
 
     <FrameLayout
         android:id="@+id/main_content_fl"
@@ -14,86 +15,6 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-
-    <LinearLayout
-        android:id="@+id/bottom_bar_ly"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/color_main_bottom"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/bottom_plan_ly"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/bottom_plan_iv"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_bottom_plan_normal"/>
-
-            <TextView
-                android:id="@+id/bottom_plan_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="计划" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bottom_add_ly"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/bottom_add_iv"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_bottom_add_normal"/>
-
-            <TextView
-                android:id="@+id/bottom_add_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="添加" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bottom_me_ly"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/bottom_me_iv"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/icon_bottom_me_normal"/>
-
-            <TextView
-                android:id="@+id/bottom_me_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="我的" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    <include layout="@layout/activity_main_bottom" />
 
 </LinearLayout>

@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/MainAppTheme" />
 
         <service android:name=".sync.AuthenticatorService">
             <intent-filter>
@@ -50,6 +52,9 @@
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
+
+        <activity android:name=".PlanCenterActivity" />
+        <activity android:name=".SignRecordActivity"></activity>
     </application>
 
 </manifest>

@@ -22,7 +22,7 @@ public class SplashActivity extends BaseActivity {
                 goMainActivity();
                 finish();
             }
-        }, 400L);
+        }, 300L);
     }
 
     private void goMainActivity() {
