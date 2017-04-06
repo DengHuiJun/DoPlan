@@ -10,19 +10,19 @@
         android:icon="@mipmap/icon_app"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/BaseAppTheme">
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
-            android:theme="@style/MainAppTheme" />
+            android:theme="@style/BaseAppTheme" />
 
         <service android:name=".sync.AuthenticatorService">
             <intent-filter>
@@ -54,7 +54,7 @@
         </service>
 
         <activity android:name=".PlanCenterActivity" />
-        <activity android:name=".SignRecordActivity"></activity>
+        <activity android:name=".SignRecordActivity" />
     </application>
 
 </manifest>

@@ -1,25 +1,31 @@
 <resources>
 
+
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MainAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 欢迎页背景引用刚才写好的 -->
         <item name="android:windowBackground">@drawable/default_start_bg</item>
         <item name="android:windowFullscreen">true</item>
         <!-- <item name="android:windowIsTranslucent">true</item> --> <!-- 透明背景不要了 -->
+    </style>
+
+
+    <style name="custom_action_bar_back_iv">
+        <item name="android:layout_width">10dip</item>
+        <item name="android:layout_height">17dip</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@drawable/ic_actionbar_back</item>
+        <item name="android:visibility">gone</item>
     </style>
 
 

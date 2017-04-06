@@ -1,9 +1,8 @@
 package com.zero.doplan;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PlanCenterActivity extends AppCompatActivity {
+public class PlanCenterActivity extends BaseActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
