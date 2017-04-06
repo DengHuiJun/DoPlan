@@ -33,11 +33,13 @@ public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanCh
 
     private PlanAdapter mAdapter;
 
-    private OnFragmentInteractionListener mListener;
+    private planWrapperFragListener mListener;
 
     private List<Plan> mPlanList;
 
     private PlanDao mPlanDao;
+
+    private int mCurrentPos = 1;
 
     public PlanWrapperFragment() {
         mPlanDao = DaoHelper.getPlanDao();
@@ -98,13 +100,17 @@ public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanCh
             }
         });
 
+        setCountTv(0);
+        mViewPager.setCurrentItem(mCurrentPos);
     }
 
     private void setCountTv(int position) {
-        if (mPlanList != null && !mPlanList.isEmpty()) {
+        if (mPlanList != null && !mPlanList.isEmpty() && mCurrentPos != position) {
             int total = mPlanList.size();
             String countTip = (position + 1) + "/" + total;
             mCountTv.setText(countTip);
+            mCurrentPos = position;
+            mListener.onChangePlan(mPlanList.get(position));
         }
     }
 
@@ -117,11 +123,11 @@ public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanCh
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof planWrapperFragListener) {
+            mListener = (planWrapperFragListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement signFragmentListener");
         }
     }
 
@@ -136,8 +142,8 @@ public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanCh
 
     }
 
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
+    public interface planWrapperFragListener {
+        void onChangePlan(Plan plan);
     }
 
     public class PlanAdapter extends FragmentPagerAdapter {

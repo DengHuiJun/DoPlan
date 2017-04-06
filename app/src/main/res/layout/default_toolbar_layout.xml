@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:gravity="center_vertical"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:contentInsetStart="0dip"
+    app:contentInsetLeft="0dip"
+    app:contentInsetEnd="0dip">
+
+    <LinearLayout
+        android:id="@+id/up"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="left|center_vertical"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip">
+
+        <ImageView
+            android:id="@+id/actionbar_back_iv"
+            android:visibility="visible"
+            style="@style/custom_action_bar_back_iv" />
+
+        <TextView
+            android:id="@id/toolbar_title"
+            style="?attr/titleTextAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="返回"
+            android:layout_marginLeft="6dip"
+            android:textSize="18.0sp"
+            android:textColor="@color/colorMainText" />
+    </LinearLayout>
+</android.support.v7.widget.Toolbar>

@@ -3,12 +3,13 @@ package com.zero.doplan;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Allen.D on 17/2/26.
  */
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends AppCompatActivity {
 
     private Handler mHandler = new Handler();
 
@@ -26,7 +27,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void goMainActivity() {
-        Intent intent = new Intent(mContext, MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

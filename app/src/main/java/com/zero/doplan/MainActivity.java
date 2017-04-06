@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -19,16 +18,18 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.zero.doplan.db.entity.Plan;
 import com.zero.doplan.fragment.AddFragment;
 import com.zero.doplan.fragment.MeFragment;
 import com.zero.doplan.fragment.PlanWrapperFragment;
+import com.zero.doplan.fragment.SignFragment;
 import com.zero.doplan.util.DimenUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements PlanWrapperFragment.OnFragmentInteractionListener{
+public class MainActivity extends BaseActionBarActivity implements PlanWrapperFragment.planWrapperFragListener, SignFragment.signFragmentListener {
 
     private static final int CLICK_PLAN = 1;
     private static final int CLICK_ADD = 2;
@@ -83,6 +84,8 @@ public class MainActivity extends BaseActivity implements PlanWrapperFragment.On
     private PlanWrapperFragment mPlanWrapperFragment;
     private MeFragment mMeFragment;
     private AddFragment mAddFragment;
+    private SignFragment mSignFragment;
+    private Plan mSelectPlan;
 
     private int mStatus = CLICK_PLAN;
 
@@ -108,6 +111,11 @@ public class MainActivity extends BaseActivity implements PlanWrapperFragment.On
 
     }
 
+    @Override
+    protected boolean hasActionBar() {
+        return false;
+    }
+
     // TODO 懒加载
     private void initFragment() {
         mPlanWrapperFragment = new PlanWrapperFragment();
@@ -115,6 +123,8 @@ public class MainActivity extends BaseActivity implements PlanWrapperFragment.On
         mAddFragment = new AddFragment();
 
         mMeFragment = new MeFragment();
+
+        mSignFragment = new SignFragment();
     }
 
     private void changeFragment(Fragment fragment) {
@@ -193,12 +203,22 @@ public class MainActivity extends BaseActivity implements PlanWrapperFragment.On
 
     @OnClick(R.id.toolbar_doing_btn)
     void clickActionBarDoing() {
-
+        clickStatus(CLICK_PLAN);
+        changeFragment(mPlanWrapperFragment);
     }
 
+    /**
+     * 切换到今日打卡
+     */
     @OnClick(R.id.toolbar_today_sign_btn)
     void clickActionBarTodaySigh() {
-
+        clickStatus(CLICK_PLAN);
+        if (mSelectPlan != null) {
+            Bundle bundle = new Bundle();
+            bundle.putLong(Constant.KEY_PLAN_ID, mSelectPlan.getPlanId());
+            mSignFragment.setArguments(bundle);
+        }
+        changeFragment(mSignFragment);
     }
 
     @OnClick(R.id.toolbar_add_iv)
@@ -238,11 +258,6 @@ public class MainActivity extends BaseActivity implements PlanWrapperFragment.On
 
                 break;
         }
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     private void initOverflowActionBar() {
@@ -297,5 +312,15 @@ public class MainActivity extends BaseActivity implements PlanWrapperFragment.On
     private void gotoSignRecord() {
         Intent intent = new Intent(this, SignRecordActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void sign() {
+
+    }
+
+    @Override
+    public void onChangePlan(Plan plan) {
+        mSelectPlan = plan;
     }
 }
