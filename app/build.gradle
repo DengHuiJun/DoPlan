@@ -36,11 +36,13 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.android.support:design:24.0.0'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.github.sundeepk:compact-calendar-view:2.0.1'
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'org.greenrobot:greendao:3.2.0'
     compile 'org.greenrobot:greendao-generator:3.2.0'
     compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.android.support:multidex:1.0.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }
