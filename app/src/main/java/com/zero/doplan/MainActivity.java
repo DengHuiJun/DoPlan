@@ -24,12 +24,15 @@ import com.zero.doplan.fragment.MeFragment;
 import com.zero.doplan.fragment.PlanWrapperFragment;
 import com.zero.doplan.fragment.SignFragment;
 import com.zero.doplan.util.DimenUtil;
+import com.zero.doplan.util.LogUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActionBarActivity implements PlanWrapperFragment.planWrapperFragListener, SignFragment.signFragmentListener {
+public class MainActivity extends BaseActionBarActivity implements PlanWrapperFragment.SlidePlanListener, SignFragment.signFragmentListener {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int CLICK_PLAN = 1;
     private static final int CLICK_ADD = 2;
@@ -321,6 +324,7 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
 
     @Override
     public void onChangePlan(Plan plan) {
+        LogUtil.d(TAG + "onChangePlan: id," + plan.getPlanId());
         mSelectPlan = plan;
     }
 }

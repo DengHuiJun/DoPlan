@@ -67,18 +67,16 @@
 
     </LinearLayout>
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
         android:text="打卡记录" />
 
-    <TextView
-        android:id="@+id/plan_sign_tv"
+    <ListView
+        android:id="@+id/plan_sign_lv"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="@color/colorMainText"
-        android:text="简直了" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorMainText" />
 
 </LinearLayout>

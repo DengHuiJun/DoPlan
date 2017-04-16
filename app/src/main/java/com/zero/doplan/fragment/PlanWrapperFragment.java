@@ -26,14 +26,14 @@ import butterknife.ButterKnife;
 /**
  * 正在计划的Fragment
  */
-public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanChangeListener {
+public class PlanWrapperFragment extends Fragment {
 
     @BindView(R.id.plan_wrapper_vp) ViewPager mViewPager;
     @BindView(R.id.plan_count_tv) TextView mCountTv;
 
     private PlanAdapter mAdapter;
 
-    private OnFragmentInteractionListener mListener;
+    private SlidePlanListener mListener;
 
     private List<Plan> mPlanList;
 
@@ -79,6 +79,7 @@ public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanCh
                 return super.getCount();
             }
         };
+
         mViewPager.setAdapter(mAdapter);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -98,10 +99,14 @@ public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanCh
             }
         });
 
+        mViewPager.setCurrentItem(0);
+        setCountTv(0);
+
     }
 
     private void setCountTv(int position) {
         if (mPlanList != null && !mPlanList.isEmpty()) {
+            mListener.onChangePlan(mPlanList.get(position));
             int total = mPlanList.size();
             String countTip = (position + 1) + "/" + total;
             mCountTv.setText(countTip);
@@ -117,8 +122,8 @@ public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanCh
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof SlidePlanListener) {
+            mListener = (SlidePlanListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -131,13 +136,8 @@ public class PlanWrapperFragment extends Fragment implements PlanFragment.PlanCh
         mListener = null;
     }
 
-    @Override
-    public void onPlanChange(int pos) {
-
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
+    public interface SlidePlanListener {
+        void onChangePlan(Plan plan);
     }
 
     public class PlanAdapter extends FragmentPagerAdapter {

@@ -3,18 +3,16 @@ package com.zero.doplan.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zero.doplan.R;
+import com.zero.doplan.adapter.SignAdapter;
 import com.zero.doplan.db.DaoHelper;
 import com.zero.doplan.db.entity.Plan;
-import com.zero.doplan.db.entity.Sign;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,16 +20,13 @@ import butterknife.ButterKnife;
 /**
  * 计划详情页
  */
-public class PlanFragment extends Fragment {
+public class PlanFragment extends BaseObserverFragment {
     private static final String ARG_PLAN = "arg_plan";
     private static final String ARG_POSITION = "arg_position";
 
     private long mPlanId;
     private int mPosition;
     private Plan mPlan;
-    private Sign mSign;
-
-    private PlanChangeListener mListener;
 
     private static final long DAY_MIS =  60L * 60 * 24 * 1000;
 
@@ -44,8 +39,10 @@ public class PlanFragment extends Fragment {
     @BindView(R.id.plan_rest_tv)
     TextView mRestTv;
 
-    @BindView(R.id.plan_sign_tv)
-    TextView mSignTv;
+    @BindView(R.id.plan_sign_lv)
+    ListView mSignLv;
+
+    private SignAdapter mSignAdapter;
 
     public PlanFragment() {
         // Required empty public constructor
@@ -71,14 +68,18 @@ public class PlanFragment extends Fragment {
         loadData(mPlanId);
     }
 
+    @Override
+    protected void onChange(String eventType, Bundle eventArgs) {
+
+    }
+
+    @Override
+    protected String[] getObserverEventType() {
+        return new String[0];
+    }
+
     private void loadData(long id) {
         mPlan = DaoHelper.getPlanDao().loadByRowId(id);
-        if (mPlan != null) {
-            List<Sign> signList = mPlan.getSigns();
-            if (signList != null && !signList.isEmpty()) {
-                mSign = signList.get(0);
-            }
-        }
     }
 
     @Override
@@ -94,17 +95,16 @@ public class PlanFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        mSignAdapter = new SignAdapter(mContext, mPlan.getSigns());
+        mSignLv.setAdapter(mSignAdapter);
     }
 
     private void refreshPlanUI () {
         if (mPlan == null) return;
 
         mGoalsTv.setText(mPlan.getGoals());
-        if (mSign != null) {
-            mSignTv.setText(mSign.getSignContent());
-        } else {
-            mSignTv.setText("暂无打卡记录！");
-        }
+
+        mSignAdapter.setSignList(mPlan.getSigns());
 
         mKeepTv.setText(Long.toString(getKeepDays(mPlan.getStartTime())));
         mRestTv.setText(Long.toString(getRestDays(mPlan.getEndTime())));
@@ -140,10 +140,6 @@ public class PlanFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-    }
-
-    public interface PlanChangeListener {
-        void onPlanChange(int pos);
     }
 
 }

@@ -1,9 +1,14 @@
 package com.zero.doplan;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+
+import butterknife.BindView;
 
 public class SignRecordActivity extends BaseActionBarActivity {
+
+    @BindView(R.id.sign_record_rv)
+    RecyclerView mRecordsRv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
