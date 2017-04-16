@@ -19,10 +19,11 @@ import com.zero.doplan.R;
 import com.zero.doplan.db.DaoHelper;
 import com.zero.doplan.db.entity.Sign;
 import com.zero.doplan.greendao.PlanDao;
+import com.zero.doplan.util.LogUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,8 @@ import butterknife.OnClick;
  *
  */
 public class SignFragment extends Fragment {
+
+    private static final String TAG = SignFragment.class.getSimpleName();
 
     private signFragmentListener mListener;
     private SimpleDateFormat mDateSDF = new SimpleDateFormat("yyyy年MM月", Locale.getDefault());
@@ -74,6 +77,12 @@ public class SignFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        Bundle args = getArguments();
+        if (args != null) {
+            mPlanId = args.getLong(Constant.KEY_PLAN_ID);
+        }
+        LogUtil.d(TAG + "get planId:" + mPlanId);
 
         TimeZone timeZone = TimeZone.getDefault();
         mCalendarView.setLocale(timeZone, Locale.CHINESE);
@@ -119,6 +128,10 @@ public class SignFragment extends Fragment {
 
     /**
      * 分割点
+<<<<<<< HEAD
+=======
+     *
+>>>>>>> local_master
      * @param calendar
      */
     private void setToMidnight(Calendar calendar) {
@@ -131,11 +144,6 @@ public class SignFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        Bundle args = getArguments();
-        if (args != null) {
-            mPlanId = args.getLong(Constant.KEY_PLAN_ID);
-        }
     }
 
     @OnClick(R.id.sign_btn)
@@ -147,7 +155,7 @@ public class SignFragment extends Fragment {
         sign.setCreatedTime(time);
         sign.setLastUpdateTime(time);
         if (mSelectTime != 0) {
-           time = mSelectTime;
+            time = mSelectTime;
         }
         sign.setSignTime(time);
         DaoHelper.getSignDao().insert(sign);
