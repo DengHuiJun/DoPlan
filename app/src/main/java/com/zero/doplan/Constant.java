@@ -6,4 +6,5 @@ package com.zero.doplan;
 
 public class Constant {
     public static final String KEY_PLAN_ID = "keyPlanId";
+    public static final long INVALID_ID = 0L;
 }

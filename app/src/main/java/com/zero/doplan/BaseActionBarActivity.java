@@ -63,6 +63,7 @@ public abstract class BaseActionBarActivity extends AppCompatActivity implements
         }
 
         super.setContentView(layoutResID);
+        initButterKnife();
     }
 
     @Override
@@ -76,6 +77,7 @@ public abstract class BaseActionBarActivity extends AppCompatActivity implements
         }
         super.setContentView(contentView);
         initToolbar();
+        initButterKnife();
     }
 
     protected void initToolbar() {
@@ -122,6 +124,8 @@ public abstract class BaseActionBarActivity extends AppCompatActivity implements
         }
 
     }
+
+    protected abstract void initButterKnife();
 
     protected void setupCustomToolbar() {
 

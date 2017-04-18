@@ -98,7 +98,6 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
         initOverflowActionBar();
@@ -113,6 +112,11 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
                     .commit();
         }
 
+    }
+
+    @Override
+    protected void initButterKnife() {
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -315,6 +319,7 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
 
     private void gotoSignRecord() {
         Intent intent = new Intent(this, SignRecordActivity.class);
+        intent.putExtra(Constant.KEY_PLAN_ID, mSelectPlan.getPlanId());
         startActivity(intent);
     }
 
