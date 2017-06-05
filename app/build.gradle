@@ -14,18 +14,49 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        doplan {
+            def planStoreFile = System.getenv("STORE_FILE")
+            def planKeyAlias = System.getenv("KEY_ALIAS")
+            def planKeyPassword = System.getenv("KEY_PWD")
+            def planStorePassword = System.getenv("STORE_PWD")
+
+            def isSign = planStoreFile != null && planKeyAlias != null && planKeyPassword != null && planStorePassword != null
+
+            if (isSign) {
+                storeFile file(planStoreFile)
+                keyAlias planKeyAlias
+                keyPassword planKeyPassword
+                storePassword planStorePassword
+            } else {
+                storeFile file("debug.jks")
+                keyAlias "aisa"
+                keyPassword "123456"
+                storePassword "123456"
+            }
+        }
+
+        doplanDebug {
+            storeFile file("debug.jks")
+            keyAlias "aisa"
+            keyPassword "123456"
+            storePassword "123456"
+        }
+    }
+
     buildTypes {
 
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.doplanDebug
         }
 
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.doplan
         }
     }
 }
