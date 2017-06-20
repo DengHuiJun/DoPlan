@@ -4,7 +4,7 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.zero.doplan"
         minSdkVersion 21
@@ -57,6 +57,7 @@ android {
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             minifyEnabled true
+            // 没有配置代码混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.doplan
         }
@@ -85,7 +86,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
 
     compile 'com.github.sundeepk:compact-calendar-view:2.0.1'
-    compile 'com.google.android.gms:play-services:10.0.1'
+//    compile 'com.google.android.gms:play-services:10.0.1'
 
     compile 'org.greenrobot:greendao:3.2.0'
     compile 'org.greenrobot:greendao-generator:3.2.0'
