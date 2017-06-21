@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zero.doplan.R;
-import com.google.android.gms.plus.PlusOneButton;
 
 import butterknife.ButterKnife;
 
