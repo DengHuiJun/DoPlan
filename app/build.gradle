@@ -4,7 +4,7 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.zero.doplan"
         minSdkVersion 21
@@ -12,6 +12,38 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        doplan {
+            def planStoreFile = System.getenv("STORE_FILE")
+            def planKeyAlias = System.getenv("KEY_ALIAS")
+            def planKeyPassword = System.getenv("KEY_PWD")
+            def planStorePassword = System.getenv("STORE_PWD")
+
+            def isSign = planStoreFile != null && planKeyAlias != null && planKeyPassword != null && planStorePassword != null
+
+            if (isSign) {
+                storeFile file(planStoreFile)
+                keyAlias planKeyAlias
+                keyPassword planKeyPassword
+                storePassword planStorePassword
+            } else {
+                storeFile file("debug.jks")
+                keyAlias "aisa"
+                keyPassword "123456"
+                storePassword "123456"
+            }
+        }
+
+        doplanDebug {
+            storeFile file("debug.jks")
+            keyAlias "aisa"
+            keyPassword "123456"
+            storePassword "123456"
+        }
     }
 
     buildTypes {
@@ -19,14 +51,20 @@ android {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.doplanDebug
         }
 
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             minifyEnabled true
+            // 没有配置代码混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.doplan
         }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
 }
 
@@ -48,7 +86,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
 
     compile 'com.github.sundeepk:compact-calendar-view:2.0.1'
-    compile 'com.google.android.gms:play-services:10.0.1'
+//    compile 'com.google.android.gms:play-services:10.0.1'
 
     compile 'org.greenrobot:greendao:3.2.0'
     compile 'org.greenrobot:greendao-generator:3.2.0'
