@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="IconItem">
-
+        <attr name="android:text"/>
+        <attr name="android:src"/>
+        <attr name="srcSelect" format="reference|color"/>
+        <attr name="textSelect" format="color"/>
     </declare-styleable>
 </resources>

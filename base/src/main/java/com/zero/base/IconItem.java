@@ -1,7 +1,11 @@
 package com.zero.base;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -20,6 +24,11 @@ public class IconItem extends LinearLayout {
     private ImageView icon;
     private TextView title;
 
+    private Drawable normalDraw;
+    private Drawable selectDraw;
+
+    private int selectColor;
+
     public IconItem(Context context) {
         this(context, null);
     }
@@ -32,15 +41,46 @@ public class IconItem extends LinearLayout {
         super(context, attrs, defStyleAttr);
 
         init();
+
+        final TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.IconItem);
+
+        String text = ta.getString(R.styleable.IconItem_android_text);
+        if (!TextUtils.isEmpty(text)) {
+            title.setText(text);
+        }
+        normalDraw = ta.getDrawable(R.styleable.IconItem_android_src);
+        if (normalDraw != null) {
+            icon.setImageDrawable(normalDraw);
+        }
+        selectDraw = ta.getDrawable(R.styleable.IconItem_srcSelect);
+        selectColor = ta.getColor(R.styleable.IconItem_textSelect, Color.GRAY);
+
+        ta.recycle();
     }
 
     private void init() {
         setOrientation(VERTICAL);
         setGravity(Gravity.CENTER);
 
+        icon = new ImageView(getContext());
+
+        title = new TextView(getContext());
+        title.setTextSize(12f);
+        title.setTextColor(Color.GRAY);
+        title.setPadding(0, 6, 0, 0);
+        title.setGravity(Gravity.CENTER);
+
+        addView(icon, 0);
+        addView(title, 1);
     }
 
     public void setSelect(boolean select) {
-
+        if (select) {
+            icon.setImageDrawable(selectDraw);
+            title.setTextColor(selectColor);
+        } else {
+            icon.setImageDrawable(normalDraw);
+            title.setTextColor(Color.GRAY);
+        }
     }
 }

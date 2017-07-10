@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_bar_ly"
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:background="@color/color_main_bottom"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/bottom_plan_ly"
+    <com.zero.base.IconItem
+        android:id="@+id/bottom_home_ii"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/bottom_plan_iv"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/icon_bottom_plan_normal" />
-
-        <TextView
-            android:id="@+id/bottom_plan_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:text="计划" />
-
-    </LinearLayout>
+        android:src="@drawable/ic_home"
+        app:srcSelect="@drawable/ic_home_s"
+        app:textSelect="#1000ff"
+        android:text="首页" />
 
     <LinearLayout
         android:id="@+id/bottom_add_ly"

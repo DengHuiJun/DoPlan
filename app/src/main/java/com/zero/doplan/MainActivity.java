@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.zero.base.IconItem;
 import com.zero.doplan.db.entity.Plan;
 import com.zero.doplan.fragment.AddFragment;
 import com.zero.doplan.fragment.MeFragment;
@@ -39,10 +40,8 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
     private static final int CLICK_ADD = 2;
     private static final int CLICK_ME = 3;
 
-    @BindView(R.id.bottom_plan_tv)
-    TextView mPlanTv;
-    @BindView(R.id.bottom_plan_iv)
-    ImageView mPlanIv;
+    @BindView(R.id.bottom_home_ii) IconItem mHomeII;
+
     @BindView(R.id.bottom_add_tv)
     TextView mAddTv;
     @BindView(R.id.bottom_add_iv)
@@ -190,7 +189,7 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
         super.onDestroy();
     }
 
-    @OnClick(R.id.bottom_plan_ly)
+    @OnClick(R.id.bottom_home_ii)
     void clickPlan() {
         clickStatus(CLICK_PLAN);
         changeFragment(mPlanWrapperFragment);
@@ -242,21 +241,21 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
         changeToolbar(status);
         switch (status) {
             case CLICK_PLAN:
-                mPlanIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_plan_select));
+                mHomeII.setSelect(true);
                 mAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_add_normal));
                 mMeIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_me_normal));
 
                 break;
 
             case CLICK_ADD:
-                mPlanIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_plan_normal));
+                mHomeII.setSelect(false);
                 mAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_add_select));
                 mMeIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_me_normal));
 
                 break;
 
             case CLICK_ME:
-                mPlanIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_plan_normal));
+                mHomeII.setSelect(false);
                 mAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_add_normal));
                 mMeIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_me_select));
 
