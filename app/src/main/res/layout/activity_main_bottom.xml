@@ -14,55 +14,46 @@
         android:layout_weight="1"
         android:src="@drawable/ic_home"
         app:srcSelect="@drawable/ic_home_s"
-        app:textSelect="#1000ff"
+        app:textSelect="@color/colorPrimary"
         android:text="首页" />
 
-    <LinearLayout
-        android:id="@+id/bottom_add_ly"
+    <com.zero.base.IconItem
+        android:id="@+id/bottom_find_ii"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:src="@drawable/ic_find"
+        app:srcSelect="@drawable/ic_find_s"
+        app:textSelect="@color/colorPrimary"
+        android:text="发现" />
 
-        <ImageView
-            android:id="@+id/bottom_add_iv"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/icon_bottom_add_normal" />
-
-        <TextView
-            android:id="@+id/bottom_add_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:text="添加" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/bottom_me_ly"
+    <com.zero.base.IconItem
+        android:id="@+id/bottom_add_ii"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:src="@drawable/ic_add"
+        app:srcSelect="@drawable/ic_add_s"
+        app:textSelect="@color/colorPrimary" />
 
-        <ImageView
-            android:id="@+id/bottom_me_iv"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/icon_bottom_me_normal" />
+    <com.zero.base.IconItem
+        android:id="@+id/bottom_msg_ii"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/ic_msg"
+        app:srcSelect="@drawable/ic_msg_s"
+        app:textSelect="@color/colorPrimary"
+        android:text="消息" />
 
-        <TextView
-            android:id="@+id/bottom_me_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:text="我的" />
-
-    </LinearLayout>
+    <com.zero.base.IconItem
+        android:id="@+id/bottom_me_ii"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/ic_me"
+        app:srcSelect="@drawable/ic_me_s"
+        app:textSelect="@color/colorPrimary"
+        android:text="我的" />
 
 </LinearLayout>

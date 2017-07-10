@@ -47,6 +47,8 @@ public class IconItem extends LinearLayout {
         String text = ta.getString(R.styleable.IconItem_android_text);
         if (!TextUtils.isEmpty(text)) {
             title.setText(text);
+        } else {
+            removeViewAt(1);
         }
         normalDraw = ta.getDrawable(R.styleable.IconItem_android_src);
         if (normalDraw != null) {
@@ -67,7 +69,7 @@ public class IconItem extends LinearLayout {
         title = new TextView(getContext());
         title.setTextSize(12f);
         title.setTextColor(Color.GRAY);
-        title.setPadding(0, 6, 0, 0);
+        title.setPadding(0, 4, 0, 0);
         title.setGravity(Gravity.CENTER);
 
         addView(icon, 0);

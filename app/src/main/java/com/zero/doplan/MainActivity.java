@@ -41,15 +41,10 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
     private static final int CLICK_ME = 3;
 
     @BindView(R.id.bottom_home_ii) IconItem mHomeII;
-
-    @BindView(R.id.bottom_add_tv)
-    TextView mAddTv;
-    @BindView(R.id.bottom_add_iv)
-    ImageView mAddIv;
-    @BindView(R.id.bottom_me_tv)
-    TextView mMeTv;
-    @BindView(R.id.bottom_me_iv)
-    ImageView mMeIv;
+    @BindView(R.id.bottom_find_ii) IconItem mFindII;
+    @BindView(R.id.bottom_add_ii) IconItem mAddII;
+    @BindView(R.id.bottom_msg_ii) IconItem mMsgII;
+    @BindView(R.id.bottom_me_ii) IconItem mMeII;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -195,14 +190,14 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
         changeFragment(mPlanWrapperFragment);
     }
 
-    @OnClick(R.id.bottom_add_ly)
+    @OnClick(R.id.bottom_add_ii)
     void clickAdd() {
         clickStatus(CLICK_ADD);
         changeFragment(mAddFragment);
 
     }
 
-    @OnClick(R.id.bottom_me_ly)
+    @OnClick(R.id.bottom_me_ii)
     void clickMe() {
         clickStatus(CLICK_ME);
         changeFragment(mMeFragment);
@@ -242,22 +237,28 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
         switch (status) {
             case CLICK_PLAN:
                 mHomeII.setSelect(true);
-                mAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_add_normal));
-                mMeIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_me_normal));
+                mFindII.setSelect(false);
+                mAddII.setSelect(false);
+                mMsgII.setSelect(false);
+                mMeII.setSelect(false);
 
                 break;
 
             case CLICK_ADD:
                 mHomeII.setSelect(false);
-                mAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_add_select));
-                mMeIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_me_normal));
+                mFindII.setSelect(false);
+                mAddII.setSelect(true);
+                mMsgII.setSelect(false);
+                mMeII.setSelect(false);
 
                 break;
 
             case CLICK_ME:
                 mHomeII.setSelect(false);
-                mAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_add_normal));
-                mMeIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bottom_me_select));
+                mFindII.setSelect(false);
+                mAddII.setSelect(false);
+                mMsgII.setSelect(false);
+                mMeII.setSelect(true);
 
                 break;
 

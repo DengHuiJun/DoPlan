@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         mHandler.postDelayed({
             goMainActivity()
             finish()
-        }, 300L)
+        }, 400L)
     }
 
     private fun goMainActivity() {
