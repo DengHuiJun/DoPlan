@@ -13,15 +13,18 @@
         android:theme="@style/BaseAppTheme">
         <activity
             android:name=".SplashActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/BaseAppTheme" />
 
         <service android:name=".sync.AuthenticatorService">
@@ -55,7 +58,15 @@
 
         <activity android:name=".PlanCenterActivity" />
         <activity android:name=".SignRecordActivity" />
-        <activity android:name=".KtActivity"></activity>
+        <activity android:name=".KtActivity" />
+        <activity
+            android:name=".ui.AddOrEditPlanActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/BaseAppTheme"></activity>
     </application>
 
 </manifest>

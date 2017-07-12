@@ -5,14 +5,17 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -20,31 +23,35 @@ import android.widget.TextView;
 
 import com.zero.base.IconItem;
 import com.zero.doplan.db.entity.Plan;
-import com.zero.doplan.fragment.AddFragment;
+import com.zero.doplan.fragment.FindFragment;
 import com.zero.doplan.fragment.MeFragment;
-import com.zero.doplan.fragment.PlanWrapperFragment;
+import com.zero.doplan.fragment.HomeFragment;
+import com.zero.doplan.fragment.MsgFragment;
 import com.zero.doplan.fragment.SignFragment;
 import com.zero.doplan.util.DimenUtil;
 import com.zero.doplan.util.LogUtil;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends BaseActionBarActivity implements PlanWrapperFragment.SlidePlanListener, SignFragment.signFragmentListener {
+public class MainActivity extends BaseActionBarActivity implements HomeFragment.SlidePlanListener, SignFragment.signFragmentListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private static final int CLICK_PLAN = 1;
-    private static final int CLICK_ADD = 2;
+    private static final int CLICK_HOME = 0;
+    private static final int CLICK_FIND = 1;
+    private static final int CLICK_MSG = 2;
     private static final int CLICK_ME = 3;
 
-    @BindView(R.id.bottom_home_ii) IconItem mHomeII;
-    @BindView(R.id.bottom_find_ii) IconItem mFindII;
-    @BindView(R.id.bottom_add_ii) IconItem mAddII;
-    @BindView(R.id.bottom_msg_ii) IconItem mMsgII;
-    @BindView(R.id.bottom_me_ii) IconItem mMeII;
+    @BindView(R.id.main_vp)
+    ViewPager mMainVp;
+
+    @BindView(R.id.main_tl)
+    TabLayout mMainTabLayout;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -70,8 +77,6 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
     @BindView(R.id.toolbar_add_iv)
     ImageView mToolbarAddIv;
 
-    @BindView(R.id.main_content_fl) FrameLayout mContentFl;
-
     private View mPopView;
     private PopupWindow mPopWind;
     private TextView mPopupManagerPlanTv;
@@ -79,13 +84,23 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
     private int yOffset;
     private int xOffset;
 
-    private PlanWrapperFragment mPlanWrapperFragment;
+    private HomeFragment mHomeFragment;
+    private FindFragment mFindFragment;
+    private MsgFragment mMsgFragment;
     private MeFragment mMeFragment;
-    private AddFragment mAddFragment;
-    private SignFragment mSignFragment;
+
+    private IconItem mHomeTab;
+    private IconItem mFindTab;
+    private IconItem mMsgTab;
+    private IconItem mMeTab;
+
+    private ArrayList<Fragment> mFragments = new ArrayList<>(4);
+
+    private MainPagerAdapter mAdapter;
+
     private Plan mSelectPlan;
 
-    private int mStatus = CLICK_PLAN;
+    private int mStatus = CLICK_HOME;
 
 
     @Override
@@ -95,16 +110,9 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
 
         setSupportActionBar(mToolbar);
         initOverflowActionBar();
-        initFragment();
-
-        // 默认点击计划
-        clickStatus(mStatus);
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_content_fl, mPlanWrapperFragment)
-                    .commit();
-        }
+        initView();
+        // 默认选中
+        changeTabStatus(mStatus);
 
     }
 
@@ -118,38 +126,88 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
         return false;
     }
 
-    // TODO 懒加载
-    private void initFragment() {
-        mPlanWrapperFragment = new PlanWrapperFragment();
+    private void initView() {
+        initFragment();
+        mAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        mMainVp.setAdapter(mAdapter);
+        mMainTabLayout.setupWithViewPager(mMainVp);
+        initTabs();
 
-        mAddFragment = new AddFragment();
+        mMainVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        mMeFragment = new MeFragment();
+            }
 
-        mSignFragment = new SignFragment();
+            @Override
+            public void onPageSelected(int position) {
+                changeTabStatus(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
-    private void changeFragment(Fragment fragment) {
-        if (mContentFl != null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_content_fl, fragment)
-//                    .addToBackStack(null) 不加入
-                    .commit();
-        }
+    private void initTabs() {
+        mHomeTab = new IconItem(mContext);
+        mHomeTab.setTabTitle("首页");
+        mHomeTab.setNormalDrawable(R.drawable.ic_home);
+        mHomeTab.setSelectDrawable(R.drawable.ic_home_s);
+        mHomeTab.setSelectColor(R.color.colorPrimary);
+        mMainTabLayout.getTabAt(0).setCustomView(mHomeTab);
+
+        mFindTab = new IconItem(mContext);
+        mFindTab.setTabTitle("发现");
+        mFindTab.setNormalDrawable(R.drawable.ic_find);
+        mFindTab.setSelectDrawable(R.drawable.ic_find_s);
+        mFindTab.setSelectColor(R.color.colorPrimary);
+        mMainTabLayout.getTabAt(1).setCustomView(mFindTab);
+
+        mMsgTab = new IconItem(mContext);
+        mMsgTab.setTabTitle("消息");
+        mMsgTab.setNormalDrawable(R.drawable.ic_msg);
+        mMsgTab.setSelectDrawable(R.drawable.ic_msg_s);
+        mMsgTab.setSelectColor(R.color.colorPrimary);
+        mMainTabLayout.getTabAt(2).setCustomView(mMsgTab);
+
+        mMeTab = new IconItem(mContext);
+        mMeTab.setTabTitle("我的");
+        mMeTab.setNormalDrawable(R.drawable.ic_me);
+        mMeTab.setSelectDrawable(R.drawable.ic_me_s);
+        mMeTab.setSelectColor(R.color.colorPrimary);
+        mMainTabLayout.getTabAt(3).setCustomView(mMeTab);
+    }
+
+    // TODO 懒加载
+    private void initFragment() {
+        mHomeFragment = new HomeFragment();
+        mFindFragment = new FindFragment();
+        mMsgFragment = new MsgFragment();
+        mMeFragment = new MeFragment();
+
+        mFragments.add(mHomeFragment);
+        mFragments.add(mFindFragment);
+        mFragments.add(mMsgFragment);
+        mFragments.add(mMeFragment);
     }
 
     private void changeToolbar(int status) {
         switch (status) {
-            case CLICK_PLAN:
+            case CLICK_HOME:
                 mToolbarPlanSelectLy.setVisibility(View.VISIBLE);
                 mToolbarTitleTv.setVisibility(View.GONE);
                 mToolbarRightTv.setVisibility(View.GONE);
                 mToolbarAddIv.setVisibility(View.VISIBLE);
 
                 mToolbarAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_actionbar_add));
+
+
                 break;
 
-            case CLICK_ADD:
+            case CLICK_FIND:
                 mToolbarPlanSelectLy.setVisibility(View.GONE);
                 mToolbarTitleTv.setVisibility(View.VISIBLE);
                 mToolbarRightTv.setVisibility(View.GONE);
@@ -161,14 +219,12 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
                 break;
 
             case CLICK_ME:
-
                 mToolbarPlanSelectLy.setVisibility(View.GONE);
                 mToolbarTitleTv.setVisibility(View.VISIBLE);
                 mToolbarRightTv.setVisibility(View.GONE);
                 mToolbarAddIv.setVisibility(View.VISIBLE);
 
                 mToolbarAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_action_edit));
-
                 mToolbarTitleTv.setText("个人信息");
 
                 break;
@@ -179,34 +235,9 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @OnClick(R.id.bottom_home_ii)
-    void clickPlan() {
-        clickStatus(CLICK_PLAN);
-        changeFragment(mPlanWrapperFragment);
-    }
-
-    @OnClick(R.id.bottom_add_ii)
-    void clickAdd() {
-        clickStatus(CLICK_ADD);
-        changeFragment(mAddFragment);
-
-    }
-
-    @OnClick(R.id.bottom_me_ii)
-    void clickMe() {
-        clickStatus(CLICK_ME);
-        changeFragment(mMeFragment);
-    }
-
     @OnClick(R.id.toolbar_doing_btn)
     void clickActionBarDoing() {
-        clickStatus(CLICK_PLAN);
-        changeFragment(mPlanWrapperFragment);
+        changeTabStatus(CLICK_HOME);
     }
 
     /**
@@ -214,56 +245,51 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
      */
     @OnClick(R.id.toolbar_today_sign_btn)
     void clickActionBarTodaySigh() {
-        clickStatus(CLICK_PLAN);
-        if (mSelectPlan != null) {
-            Bundle bundle = new Bundle();
-            bundle.putLong(Constant.KEY_PLAN_ID, mSelectPlan.getPlanId());
-            mSignFragment.setArguments(bundle);
-        }
-        changeFragment(mSignFragment);
+        changeTabStatus(CLICK_HOME);
     }
 
     @OnClick(R.id.toolbar_add_iv)
     void clickActionAdd() {
-        if (mStatus == CLICK_PLAN) {
+        if (mStatus == CLICK_HOME) {
             showOverflowMenu(true);
         }
     }
 
 
-    private void clickStatus(int status) {
+    private void changeTabStatus(int status) {
         mStatus = status;
         changeToolbar(status);
         switch (status) {
-            case CLICK_PLAN:
-                mHomeII.setSelect(true);
-                mFindII.setSelect(false);
-                mAddII.setSelect(false);
-                mMsgII.setSelect(false);
-                mMeII.setSelect(false);
+            case CLICK_HOME:
+                mHomeTab.setSelect(true);
+                mFindTab.setSelect(false);
+                mMsgTab.setSelect(false);
+                mMeTab.setSelect(false);
+                break;
+
+            case CLICK_FIND:
+                mHomeTab.setSelect(false);
+                mFindTab.setSelect(true);
+                mMsgTab.setSelect(false);
+                mMeTab.setSelect(false);
 
                 break;
 
-            case CLICK_ADD:
-                mHomeII.setSelect(false);
-                mFindII.setSelect(false);
-                mAddII.setSelect(true);
-                mMsgII.setSelect(false);
-                mMeII.setSelect(false);
-
+            case CLICK_MSG:
+                mHomeTab.setSelect(false);
+                mFindTab.setSelect(false);
+                mMsgTab.setSelect(true);
+                mMeTab.setSelect(false);
                 break;
 
             case CLICK_ME:
-                mHomeII.setSelect(false);
-                mFindII.setSelect(false);
-                mAddII.setSelect(false);
-                mMsgII.setSelect(false);
-                mMeII.setSelect(true);
-
+                mHomeTab.setSelect(false);
+                mFindTab.setSelect(false);
+                mMsgTab.setSelect(false);
+                mMeTab.setSelect(true);
                 break;
 
             default:
-
                 break;
         }
     }
@@ -332,5 +358,22 @@ public class MainActivity extends BaseActionBarActivity implements PlanWrapperFr
     public void onChangePlan(Plan plan) {
         LogUtil.d(TAG + "onChangePlan: id," + plan.getPlanId());
         mSelectPlan = plan;
+    }
+
+    public class MainPagerAdapter extends FragmentPagerAdapter {
+
+        public MainPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
     }
 }

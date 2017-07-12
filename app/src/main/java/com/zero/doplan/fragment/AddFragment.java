@@ -119,6 +119,7 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
         mPlanDao.insert(wrapperPlan());
         clearData();
         Snackbar.make(mGoalsTIL, "保存成功！", Snackbar.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 
     private void clearData() {

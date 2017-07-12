@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -48,10 +49,12 @@ public class IconItem extends LinearLayout {
         if (!TextUtils.isEmpty(text)) {
             title.setText(text);
         } else {
-            removeViewAt(1);
+            title.setVisibility(GONE);
         }
-        normalDraw = ta.getDrawable(R.styleable.IconItem_android_src);
-        if (normalDraw != null) {
+
+        final Drawable d = ta.getDrawable(R.styleable.IconItem_android_src);
+        if (d != null) {
+            normalDraw = d;
             icon.setImageDrawable(normalDraw);
         }
         selectDraw = ta.getDrawable(R.styleable.IconItem_srcSelect);
@@ -83,6 +86,27 @@ public class IconItem extends LinearLayout {
         } else {
             icon.setImageDrawable(normalDraw);
             title.setTextColor(Color.GRAY);
+        }
+    }
+
+    public void setNormalDrawable(int resId) {
+        normalDraw = ContextCompat.getDrawable(getContext(), resId);
+    }
+
+    public void setSelectDrawable(int resId) {
+        selectDraw = ContextCompat.getDrawable(getContext(), resId);
+    }
+
+    public void setSelectColor(int id) {
+        selectColor = ContextCompat.getColor(getContext(), id);
+    }
+
+    public void setTabTitle(CharSequence str) {
+        title.setText(str);
+        if (TextUtils.isEmpty(str)) {
+            title.setVisibility(GONE);
+        } else {
+            title.setVisibility(VISIBLE);
         }
     }
 }
