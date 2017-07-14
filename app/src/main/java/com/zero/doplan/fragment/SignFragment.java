@@ -128,10 +128,6 @@ public class SignFragment extends Fragment {
 
     /**
      * 分割点
-<<<<<<< HEAD
-=======
-     *
->>>>>>> local_master
      * @param calendar
      */
     private void setToMidnight(Calendar calendar) {

@@ -31,8 +31,9 @@ public class PlanDao extends AbstractDao<Plan, Long> {
         public final static Property EndTime = new Property(4, long.class, "endTime", false, "END_TIME");
         public final static Property PlanType = new Property(5, int.class, "planType", false, "PLAN_TYPE");
         public final static Property HasDone = new Property(6, boolean.class, "hasDone", false, "HAS_DONE");
-        public final static Property Goals = new Property(7, String.class, "goals", false, "GOALS");
+        public final static Property Goals = new Property(7, int.class, "goals", false, "GOALS");
         public final static Property Content = new Property(8, String.class, "content", false, "CONTENT");
+        public final static Property SignTimes = new Property(9, int.class, "signTimes", false, "SIGN_TIMES");
     }
 
     private DaoSession daoSession;
@@ -58,8 +59,9 @@ public class PlanDao extends AbstractDao<Plan, Long> {
                 "\"END_TIME\" INTEGER NOT NULL ," + // 4: endTime
                 "\"PLAN_TYPE\" INTEGER NOT NULL ," + // 5: planType
                 "\"HAS_DONE\" INTEGER NOT NULL ," + // 6: hasDone
-                "\"GOALS\" TEXT," + // 7: goals
-                "\"CONTENT\" TEXT);"); // 8: content
+                "\"GOALS\" INTEGER NOT NULL ," + // 7: goals
+                "\"CONTENT\" TEXT," + // 8: content
+                "\"SIGN_TIMES\" INTEGER NOT NULL );"); // 9: signTimes
     }
 
     /** Drops the underlying database table. */
@@ -82,16 +84,13 @@ public class PlanDao extends AbstractDao<Plan, Long> {
         stmt.bindLong(5, entity.getEndTime());
         stmt.bindLong(6, entity.getPlanType());
         stmt.bindLong(7, entity.getHasDone() ? 1L: 0L);
- 
-        String goals = entity.getGoals();
-        if (goals != null) {
-            stmt.bindString(8, goals);
-        }
+        stmt.bindLong(8, entity.getGoals());
  
         String content = entity.getContent();
         if (content != null) {
             stmt.bindString(9, content);
         }
+        stmt.bindLong(10, entity.getSignTimes());
     }
 
     @Override
@@ -108,16 +107,13 @@ public class PlanDao extends AbstractDao<Plan, Long> {
         stmt.bindLong(5, entity.getEndTime());
         stmt.bindLong(6, entity.getPlanType());
         stmt.bindLong(7, entity.getHasDone() ? 1L: 0L);
- 
-        String goals = entity.getGoals();
-        if (goals != null) {
-            stmt.bindString(8, goals);
-        }
+        stmt.bindLong(8, entity.getGoals());
  
         String content = entity.getContent();
         if (content != null) {
             stmt.bindString(9, content);
         }
+        stmt.bindLong(10, entity.getSignTimes());
     }
 
     @Override
@@ -141,8 +137,9 @@ public class PlanDao extends AbstractDao<Plan, Long> {
             cursor.getLong(offset + 4), // endTime
             cursor.getInt(offset + 5), // planType
             cursor.getShort(offset + 6) != 0, // hasDone
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // goals
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // content
+            cursor.getInt(offset + 7), // goals
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // content
+            cursor.getInt(offset + 9) // signTimes
         );
         return entity;
     }
@@ -156,8 +153,9 @@ public class PlanDao extends AbstractDao<Plan, Long> {
         entity.setEndTime(cursor.getLong(offset + 4));
         entity.setPlanType(cursor.getInt(offset + 5));
         entity.setHasDone(cursor.getShort(offset + 6) != 0);
-        entity.setGoals(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setGoals(cursor.getInt(offset + 7));
         entity.setContent(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setSignTimes(cursor.getInt(offset + 9));
      }
     
     @Override

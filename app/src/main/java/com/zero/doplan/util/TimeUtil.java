@@ -16,5 +16,9 @@ public class TimeUtil {
         return SDF.format(new Date(time));
     }
 
+    public static int getDaysByTwoTime(long start, long end) {
+        return (int) ((end - start) / 86400000);
+    }
+
 
 }

@@ -41,9 +41,12 @@ public class Plan {
 
     private boolean hasDone;
 
-    private String goals;
+    // 量化目标值
+    private int goals;
 
     private String content;
+
+    private int signTimes;
 
 
     @ToMany(referencedJoinProperty = "planId")
@@ -63,9 +66,10 @@ public class Plan {
     private transient PlanDao myDao;
 
 
-    @Generated(hash = 2047451973)
+    @Generated(hash = 1960177227)
     public Plan(Long planId, long createdTime, long lastUpdateTime, long startTime,
-            long endTime, int planType, boolean hasDone, String goals, String content) {
+            long endTime, int planType, boolean hasDone, int goals, String content,
+            int signTimes) {
         this.planId = planId;
         this.createdTime = createdTime;
         this.lastUpdateTime = lastUpdateTime;
@@ -75,6 +79,7 @@ public class Plan {
         this.hasDone = hasDone;
         this.goals = goals;
         this.content = content;
+        this.signTimes = signTimes;
     }
 
 
@@ -86,6 +91,12 @@ public class Plan {
     public Long getPlanId() {
         return this.planId;
     }
+
+
+    public void setPlanId(Long planId) {
+        this.planId = planId;
+    }
+
 
     public long getCreatedTime() {
         return this.createdTime;
@@ -147,12 +158,12 @@ public class Plan {
     }
 
 
-    public String getGoals() {
+    public int getGoals() {
         return this.goals;
     }
 
 
-    public void setGoals(String goals) {
+    public void setGoals(int goals) {
         this.goals = goals;
     }
 
@@ -248,9 +259,13 @@ public class Plan {
     }
 
 
-    public void setPlanId(Long planId) {
-        this.planId = planId;
+    public int getSignTimes() {
+        return this.signTimes;
     }
 
+
+    public void setSignTimes(int signTimes) {
+        this.signTimes = signTimes;
+    }
 
 }

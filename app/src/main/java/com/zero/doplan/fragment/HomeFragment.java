@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 
 import com.zero.doplan.R;
 import com.zero.doplan.adapter.PlanListAdapter;
+import com.zero.doplan.db.DaoHelper;
 import com.zero.doplan.db.entity.Plan;
+import com.zero.doplan.event.EventsType;
 import com.zero.doplan.greendao.PlanDao;
 import com.zero.doplan.ui.AddOrEditPlanActivity;
 
@@ -27,15 +29,11 @@ import butterknife.OnClick;
 /**
  * 主页
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseObserverFragment {
 
     private SlidePlanListener mListener;
 
-    private List<Plan> mPlanList;
-
-    private PlanDao mPlanDao;
-
-    private ArrayList<String> mMockDatas = new ArrayList<>();
+    private List<Plan> mPlanList = new ArrayList<>();
 
     private PlanListAdapter mAdapter;
 
@@ -43,18 +41,23 @@ public class HomeFragment extends Fragment {
     RecyclerView mHomeRv;
 
     public HomeFragment() {
-//        mPlanDao = DaoHelper.getPlanDao();
-//        refreshData();
     }
 
     private void refreshData() {
-        mPlanList = mPlanDao.queryBuilder().orderAsc(PlanDao.Properties.StartTime).limit(10).list();
+        mPlanList = DaoHelper.getPlanDao().queryBuilder().orderAsc(PlanDao.Properties.CreatedTime).limit(10).list();
+        mAdapter.setItems(mPlanList);
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onChange(String eventType, Bundle eventArgs) {
+        refreshData();
+    }
 
+    @Override
+    protected String[] getObserverEventType() {
+        return new String[] {
+                EventsType.PLAN_ADD_EVENT
+        };
     }
 
     @Override
@@ -71,12 +74,10 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        for (int i = 0; i < 15; i++) {
-            mMockDatas.add(Integer.toString(i));
-        }
-        mAdapter = new PlanListAdapter(getActivity(), mMockDatas);
+        mAdapter = new PlanListAdapter(getActivity(), mPlanList);
         mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         mHomeRv.setAdapter(mAdapter);
+        refreshData();
     }
 
     @Override

@@ -25,8 +25,8 @@
         android:id="@+id/main_tl"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/white"
         app:tabIndicatorColor="@color/white"
-        app:tabTextColor="@color/white"
         app:tabIndicatorHeight="0dp"
         app:tabMode="fixed" />
 

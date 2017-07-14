@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.zero.doplan.R;
 import com.zero.doplan.db.DaoHelper;
 import com.zero.doplan.db.entity.Plan;
+import com.zero.doplan.event.EventsType;
+import com.zero.doplan.event.NotificationCenter;
 import com.zero.doplan.greendao.PlanDao;
 
 import butterknife.BindView;
@@ -43,6 +45,7 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
 
     private PlanDao mPlanDao;
 
+    private int mGoalValue;
     private String mGoals;
     private String mContent;
     private long mStartTime;
@@ -110,6 +113,12 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
             Snackbar.make(mGoalsTIL, "目标不能为空！", Snackbar.LENGTH_SHORT).show();
             return;
         }
+        try {
+            mGoalValue = Integer.parseInt(mGoals);
+        } catch (Exception e) {
+            Snackbar.make(mGoalsTIL, "量化值填写有误！", Snackbar.LENGTH_SHORT).show();
+            return;
+        }
 
         if (mStartTime >= mEndTime && mStartTime != 0) {
             Snackbar.make(mGoalsTIL, "时间错误！", Snackbar.LENGTH_SHORT).show();
@@ -119,6 +128,7 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
         mPlanDao.insert(wrapperPlan());
         clearData();
         Snackbar.make(mGoalsTIL, "保存成功！", Snackbar.LENGTH_SHORT).show();
+        NotificationCenter.getInstance().notify(EventsType.PLAN_ADD_EVENT);
         getActivity().finish();
     }
 
@@ -132,7 +142,7 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
     private Plan wrapperPlan() {
         long nowTime = System.currentTimeMillis();
         Plan plan = new Plan();
-        plan.setGoals(mGoals);
+        plan.setGoals(mGoalValue);
         plan.setContent(mContent);
         plan.setCreatedTime(nowTime);
         plan.setLastUpdateTime(nowTime);

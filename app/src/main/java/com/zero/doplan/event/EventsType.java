@@ -10,16 +10,16 @@ public class EventsType {
 
     private static final String PKG = "com.zero.";
 
-    public final static String REFRESH_DATA_ADD_EVENT = PKG + "refreshData";
+    public final static String PLAN_ADD_EVENT = PKG + "planAdd";
 
     /**
      * !!! 所有系统的事件都在此加入事件列表
      */
     private EventsType() {
-        eventsTypeSet.add(REFRESH_DATA_ADD_EVENT);
+        eventsTypeSet.add(PLAN_ADD_EVENT);
     }
 
-    public static EventsType getsInstance() {
+    public static EventsType getInstance() {
         if (sInstance == null) {
             synchronized (EventsType.class) {
                 if (sInstance == null) {

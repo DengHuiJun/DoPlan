@@ -23,7 +23,7 @@ public class NotificationCenter {
     }
 
     public void notify(String group, String eventType, Bundle eventArgs) {
-        EventsType eventsType = EventsType.getsInstance();
+        EventsType eventsType = EventsType.getInstance();
         EventsObservable eventsObservable = EventsObservable.getInstance();
         if (eventsType.contains(eventType)) {
             group = (group == null ? "" : group);
