@@ -10,8 +10,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.zero.doplan.R;
+import com.zero.doplan.db.PlanService;
 import com.zero.doplan.db.entity.Plan;
 import com.zero.doplan.util.TimeUtil;
+import com.zero.doplan.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +52,12 @@ public class PlanListAdapter extends RecyclerView.Adapter<PlanListAdapter.ItemVi
         holder.signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                boolean b = PlanService.getInstance().signPlan(p.getPlanId());
+                if (b) {
+                    ToastUtil.showShort("打卡成功");
+                } else {
+                    ToastUtil.showShort("已经打过卡了");
+                }
             }
         });
 

@@ -30,9 +30,9 @@ public class SignDao extends AbstractDao<Sign, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property PlanId = new Property(1, long.class, "planId", false, "PLAN_ID");
         public final static Property SignTime = new Property(2, long.class, "signTime", false, "SIGN_TIME");
-        public final static Property SignContent = new Property(3, String.class, "signContent", false, "SIGN_CONTENT");
-        public final static Property CreatedTime = new Property(4, long.class, "createdTime", false, "CREATED_TIME");
-        public final static Property LastUpdateTime = new Property(5, long.class, "lastUpdateTime", false, "LAST_UPDATE_TIME");
+        public final static Property KeyTodayTime = new Property(3, long.class, "keyTodayTime", false, "KEY_TODAY_TIME");
+        public final static Property SignContent = new Property(4, String.class, "signContent", false, "SIGN_CONTENT");
+        public final static Property CreatedTime = new Property(5, long.class, "createdTime", false, "CREATED_TIME");
     }
 
     private Query<Sign> plan_SignsQuery;
@@ -52,9 +52,9 @@ public class SignDao extends AbstractDao<Sign, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"PLAN_ID\" INTEGER NOT NULL ," + // 1: planId
                 "\"SIGN_TIME\" INTEGER NOT NULL ," + // 2: signTime
-                "\"SIGN_CONTENT\" TEXT," + // 3: signContent
-                "\"CREATED_TIME\" INTEGER NOT NULL ," + // 4: createdTime
-                "\"LAST_UPDATE_TIME\" INTEGER NOT NULL );"); // 5: lastUpdateTime
+                "\"KEY_TODAY_TIME\" INTEGER NOT NULL ," + // 3: keyTodayTime
+                "\"SIGN_CONTENT\" TEXT," + // 4: signContent
+                "\"CREATED_TIME\" INTEGER NOT NULL );"); // 5: createdTime
     }
 
     /** Drops the underlying database table. */
@@ -73,13 +73,13 @@ public class SignDao extends AbstractDao<Sign, Long> {
         }
         stmt.bindLong(2, entity.getPlanId());
         stmt.bindLong(3, entity.getSignTime());
+        stmt.bindLong(4, entity.getKeyTodayTime());
  
         String signContent = entity.getSignContent();
         if (signContent != null) {
-            stmt.bindString(4, signContent);
+            stmt.bindString(5, signContent);
         }
-        stmt.bindLong(5, entity.getCreatedTime());
-        stmt.bindLong(6, entity.getLastUpdateTime());
+        stmt.bindLong(6, entity.getCreatedTime());
     }
 
     @Override
@@ -92,13 +92,13 @@ public class SignDao extends AbstractDao<Sign, Long> {
         }
         stmt.bindLong(2, entity.getPlanId());
         stmt.bindLong(3, entity.getSignTime());
+        stmt.bindLong(4, entity.getKeyTodayTime());
  
         String signContent = entity.getSignContent();
         if (signContent != null) {
-            stmt.bindString(4, signContent);
+            stmt.bindString(5, signContent);
         }
-        stmt.bindLong(5, entity.getCreatedTime());
-        stmt.bindLong(6, entity.getLastUpdateTime());
+        stmt.bindLong(6, entity.getCreatedTime());
     }
 
     @Override
@@ -112,9 +112,9 @@ public class SignDao extends AbstractDao<Sign, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getLong(offset + 1), // planId
             cursor.getLong(offset + 2), // signTime
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // signContent
-            cursor.getLong(offset + 4), // createdTime
-            cursor.getLong(offset + 5) // lastUpdateTime
+            cursor.getLong(offset + 3), // keyTodayTime
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // signContent
+            cursor.getLong(offset + 5) // createdTime
         );
         return entity;
     }
@@ -124,9 +124,9 @@ public class SignDao extends AbstractDao<Sign, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setPlanId(cursor.getLong(offset + 1));
         entity.setSignTime(cursor.getLong(offset + 2));
-        entity.setSignContent(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setCreatedTime(cursor.getLong(offset + 4));
-        entity.setLastUpdateTime(cursor.getLong(offset + 5));
+        entity.setKeyTodayTime(cursor.getLong(offset + 3));
+        entity.setSignContent(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setCreatedTime(cursor.getLong(offset + 5));
      }
     
     @Override

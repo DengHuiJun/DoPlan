@@ -149,7 +149,6 @@ public class SignFragment extends Fragment {
         sign.setPlanId(mPlanId);
         sign.setSignContent(mSignContentTIL.getEditText().getText().toString());
         sign.setCreatedTime(time);
-        sign.setLastUpdateTime(time);
         if (mSelectTime != 0) {
             time = mSelectTime;
         }

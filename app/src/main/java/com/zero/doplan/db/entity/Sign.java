@@ -17,27 +17,30 @@ public class Sign {
     @Id(autoincrement = true)
     private Long id;
 
+    @NotNull
     private long planId;
 
+    @NotNull
     private long signTime;
+
+    // 取每天的凌晨2点整作为标识，这天是否打卡
+    @NotNull
+    private long keyTodayTime;
 
     private String signContent;
 
     @NotNull
     private long createdTime;
 
-    @NotNull
-    private long lastUpdateTime;
-
-    @Generated(hash = 870359712)
-    public Sign(Long id, long planId, long signTime, String signContent,
-            long createdTime, long lastUpdateTime) {
+    @Generated(hash = 751421876)
+    public Sign(Long id, long planId, long signTime, long keyTodayTime,
+            String signContent, long createdTime) {
         this.id = id;
         this.planId = planId;
         this.signTime = signTime;
+        this.keyTodayTime = keyTodayTime;
         this.signContent = signContent;
         this.createdTime = createdTime;
-        this.lastUpdateTime = lastUpdateTime;
     }
 
     @Generated(hash = 2025164192)
@@ -84,12 +87,12 @@ public class Sign {
         this.createdTime = createdTime;
     }
 
-    public long getLastUpdateTime() {
-        return this.lastUpdateTime;
+    public long getKeyTodayTime() {
+        return this.keyTodayTime;
     }
 
-    public void setLastUpdateTime(long lastUpdateTime) {
-        this.lastUpdateTime = lastUpdateTime;
+    public void setKeyTodayTime(long keyTodayTime) {
+        this.keyTodayTime = keyTodayTime;
     }
 
 }
