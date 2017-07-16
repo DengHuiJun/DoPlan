@@ -6,4 +6,9 @@
         <attr name="srcSelect" format="reference|color"/>
         <attr name="textSelect" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="RowItem">
+        <attr name="iconSrc" format="reference" />
+        <attr name="title" format="string" />
+    </declare-styleable>
 </resources>

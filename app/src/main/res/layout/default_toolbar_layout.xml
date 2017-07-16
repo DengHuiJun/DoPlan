@@ -38,8 +38,8 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="返回"
-            android:layout_marginLeft="6dip"
+            android:layout_marginLeft="8dp"
             android:textSize="18.0sp"
-            android:textColor="@color/colorMainText" />
+            android:textColor="@color/white" />
     </LinearLayout>
 </android.support.v7.widget.Toolbar>

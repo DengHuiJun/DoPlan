@@ -23,7 +23,7 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:duplicateParentState">true</item>
         <item name="android:scaleType">fitXY</item>
-        <item name="android:src">@drawable/ic_actionbar_back</item>
+        <item name="android:src">@drawable/ic_back</item>
         <item name="android:visibility">gone</item>
     </style>
 

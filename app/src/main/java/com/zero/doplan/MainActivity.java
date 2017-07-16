@@ -202,19 +202,23 @@ public class MainActivity extends BaseActionBarActivity implements HomeFragment.
                 mToolbarRightTv.setVisibility(View.GONE);
                 mToolbarAddIv.setVisibility(View.VISIBLE);
 
-                mToolbarAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_actionbar_add));
-
+                mToolbarAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_action_menu));
 
                 break;
+
 
             case CLICK_FIND:
                 mToolbarPlanSelectLy.setVisibility(View.GONE);
                 mToolbarTitleTv.setVisibility(View.VISIBLE);
                 mToolbarRightTv.setVisibility(View.GONE);
-                mToolbarAddIv.setVisibility(View.VISIBLE);
+                mToolbarAddIv.setVisibility(View.GONE);
 
                 mToolbarAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_actionbar_done));
-                mToolbarTitleTv.setText("添加计划");
+                mToolbarTitleTv.setText("发现");
+
+                break;
+
+            case CLICK_MSG:
 
                 break;
 
@@ -222,10 +226,9 @@ public class MainActivity extends BaseActionBarActivity implements HomeFragment.
                 mToolbarPlanSelectLy.setVisibility(View.GONE);
                 mToolbarTitleTv.setVisibility(View.VISIBLE);
                 mToolbarRightTv.setVisibility(View.GONE);
-                mToolbarAddIv.setVisibility(View.VISIBLE);
+                mToolbarAddIv.setVisibility(View.GONE);
 
-                mToolbarAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_action_edit));
-                mToolbarTitleTv.setText("个人信息");
+                mToolbarTitleTv.setText("我的");
 
                 break;
 
@@ -324,7 +327,7 @@ public class MainActivity extends BaseActionBarActivity implements HomeFragment.
 
             @Override
             public void onClick(View v) {
-                gotoSignRecord();
+//                gotoSignRecord();
                 showOverflowMenu(false);
             }
         });
@@ -345,7 +348,7 @@ public class MainActivity extends BaseActionBarActivity implements HomeFragment.
 
     private void gotoSignRecord() {
         Intent intent = new Intent(this, SignRecordActivity.class);
-        intent.putExtra(Constant.KEY_PLAN_ID, mSelectPlan.getPlanId());
+//        intent.putExtra(Constant.KEY_PLAN_ID, mSelectPlan.getPlanId());
         startActivity(intent);
     }
 

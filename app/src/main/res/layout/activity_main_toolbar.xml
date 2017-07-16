@@ -24,7 +24,8 @@
             android:layout_height="35dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_actionbar_head" />
+            android:src="@drawable/ic_actionbar_head"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/toolbar_plan_select_ly"
@@ -67,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textSize="18sp"
-            android:textColor="@color/colorMainText"
+            android:textColor="@color/white"
             android:text="添加计划"/>
 
 
