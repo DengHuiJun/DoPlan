@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.zero.doplan.db.DaoHelper;
-import com.zero.doplan.db.entity.Sign;
-
 import java.util.List;
 
 import butterknife.BindView;

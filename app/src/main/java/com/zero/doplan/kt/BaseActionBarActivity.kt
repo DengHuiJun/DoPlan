@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.zero.doplan.R
 
@@ -40,7 +41,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
 
     override fun setContentView(@LayoutRes layoutResID: Int) {
         // 1. 清空内容
-        val contentLayout = findViewById(Window.ID_ANDROID_CONTENT) as FrameLayout
+        val contentLayout = findViewById<FrameLayout>(Window.ID_ANDROID_CONTENT) as FrameLayout
         contentLayout.removeAllViews()
 
         if (hasActionBar()) {
@@ -56,10 +57,10 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
 
     override fun setContentView(view: View) {
         var contentView = view
-        if (hasActionBar() && view.findViewById(R.id.toolbar) == null) {
+        if (hasActionBar() && view.findViewById<Toolbar>(R.id.toolbar) == null) {
             // 自动添加默认的ActionBar
             val root = mInflater?.inflate(R.layout.activity_base, null)
-            (root?.findViewById(R.id.activity_content) as FrameLayout).addView(view)
+            (root?.findViewById<FrameLayout>(R.id.activity_content) as FrameLayout).addView(view)
             contentView = root
         }
         super.setContentView(contentView)
@@ -68,7 +69,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
 
     protected fun initToolbar() {
         if (hasActionBar()) {
-            val toolbar = findViewById(R.id.toolbar) as Toolbar
+            val toolbar = findViewById<Toolbar>(R.id.toolbar) as Toolbar
             if (toolbar != null) {
                 setSupportActionBar(toolbar)
                 val layoutRes = customToolbar
@@ -82,7 +83,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
                 }
 
                 val actionBar = supportActionBar
-                val navView = toolbar.findViewById(R.id.up)
+                val navView = toolbar.findViewById<LinearLayout>(R.id.up)
                 if (navView != null) {
                     actionBar!!.setDisplayShowHomeEnabled(false)
                     navView.setOnClickListener {
@@ -93,12 +94,12 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
                         }
                     }
                 }
-                mTitleTv = toolbar.findViewById(R.id.toolbar_title) as TextView
+                mTitleTv = toolbar.findViewById<TextView>(R.id.toolbar_title) as TextView
                 if (mTitleTv != null) {
                     actionBar!!.setDisplayShowTitleEnabled(false)
                 }
 
-                val backIv = toolbar.findViewById(R.id.actionbar_back_iv) as ImageView
+                val backIv = toolbar.findViewById<ImageView>(R.id.actionbar_back_iv) as ImageView
                 if (backIv != null) {
                     setupToolbarBackIv(backIv)
                 }

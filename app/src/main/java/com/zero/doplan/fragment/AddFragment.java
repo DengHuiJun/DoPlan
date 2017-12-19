@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zero.doplan.R;
-import com.zero.doplan.db.DaoHelper;
-import com.zero.doplan.db.entity.Plan;
 import com.zero.doplan.event.EventsType;
 import com.zero.doplan.event.NotificationCenter;
 import com.zero.doplan.greendao.PlanDao;

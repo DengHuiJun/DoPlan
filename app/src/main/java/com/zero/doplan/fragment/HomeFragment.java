@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 
 import com.zero.doplan.R;
 import com.zero.doplan.adapter.PlanListAdapter;
-import com.zero.doplan.db.DaoHelper;
-import com.zero.doplan.db.entity.Plan;
 import com.zero.doplan.event.EventsType;
 import com.zero.doplan.greendao.PlanDao;
 import com.zero.doplan.ui.AddOrEditPlanActivity;

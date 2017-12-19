@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.zero.doplan.R;
 import com.zero.doplan.adapter.SignAdapter;
-import com.zero.doplan.db.DaoHelper;
-import com.zero.doplan.db.entity.Plan;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

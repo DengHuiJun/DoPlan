@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zero.doplan.R;
-import com.zero.doplan.db.entity.Sign;
 import com.zero.doplan.util.TimeUtil;
 
 import java.util.List;

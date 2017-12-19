@@ -16,8 +16,6 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.zero.doplan.Constant;
 import com.zero.doplan.R;
-import com.zero.doplan.db.DaoHelper;
-import com.zero.doplan.db.entity.Sign;
 import com.zero.doplan.greendao.PlanDao;
 import com.zero.doplan.util.LogUtil;
 

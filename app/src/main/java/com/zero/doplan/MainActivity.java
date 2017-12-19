@@ -22,7 +22,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.zero.base.IconItem;
-import com.zero.doplan.db.entity.Plan;
 import com.zero.doplan.fragment.FindFragment;
 import com.zero.doplan.fragment.HomeFragment;
 import com.zero.doplan.fragment.MeFragment;

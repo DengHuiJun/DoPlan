@@ -10,10 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.zero.doplan.R;
-import com.zero.doplan.db.DaoHelper;
-import com.zero.doplan.db.PlanService;
-import com.zero.doplan.db.entity.Plan;
-import com.zero.doplan.db.entity.Sign;
 import com.zero.doplan.event.EventsType;
 import com.zero.doplan.event.NotificationCenter;
 import com.zero.doplan.util.TimeUtil;
