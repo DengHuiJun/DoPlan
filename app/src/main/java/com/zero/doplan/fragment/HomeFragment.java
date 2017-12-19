@@ -54,8 +54,9 @@ public class HomeFragment extends BaseObserverFragment {
 
     @Override
     protected String[] getObserverEventType() {
-        return new String[] {
-                EventsType.PLAN_ADD_EVENT
+        return new String[]{
+                EventsType.PLAN_ADD_EVENT,
+                EventsType.PLAN_REFRESH_EVENT
         };
     }
 

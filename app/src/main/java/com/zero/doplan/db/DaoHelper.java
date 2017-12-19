@@ -13,7 +13,7 @@ public class DaoHelper {
 
     private static final DaoSession mDaoSession = AppContext.getDaoSession();
 
-    private DaoHelper(){
+    private DaoHelper() {
 
     }
 

@@ -25,6 +25,7 @@ import butterknife.OnClick;
 
 /**
  * 添加计划
+ *
  * @author Allen.D
  */
 public class AddFragment extends Fragment implements DatePickDialogFragment.PickDateListener {
@@ -64,8 +65,8 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
         View view = inflater.inflate(R.layout.fragment_add, container, false);
         ButterKnife.bind(this, view);
 
-        mGoalsTIL.setHint("目标：");
-        mContentTIL.setHint("备注：");
+        mGoalsTIL.setHint("量化值：");
+        mContentTIL.setHint("小目标：");
 
         return view;
     }
@@ -76,12 +77,6 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
 
         mPlanDao = DaoHelper.getPlanDao();
         mStartTime = mEndTime = System.currentTimeMillis();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
     }
 
     @OnClick(R.id.start_time_tv)
@@ -107,7 +102,7 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
     @OnClick(R.id.add_save_btn)
     public void savePlan() {
         mGoals = mGoalsTIL.getEditText().getText().toString().trim();
-        mContent = mGoalsTIL.getEditText().getText().toString().trim();
+        mContent = mContentTIL.getEditText().getText().toString().trim();
 
         if (TextUtils.isEmpty(mGoals)) {
             Snackbar.make(mGoalsTIL, "目标不能为空！", Snackbar.LENGTH_SHORT).show();

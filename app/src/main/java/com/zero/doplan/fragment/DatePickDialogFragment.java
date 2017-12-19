@@ -2,9 +2,9 @@ package com.zero.doplan.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.text.format.DateFormat;
 import android.widget.DatePicker;
 
@@ -15,7 +15,7 @@ import java.util.Locale;
 /**
  * Created by Allen.D on 17-3-15.
  */
-public class DatePickDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+public class DatePickDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     private static final String TAG = "DatePickDialogFragment";
 

@@ -28,9 +28,11 @@ public class RowItem extends RelativeLayout {
     public RowItem(Context context) {
         this(context, null);
     }
+
     public RowItem(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
+
     public RowItem(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
@@ -46,7 +48,7 @@ public class RowItem extends RelativeLayout {
         final Drawable d = ta.getDrawable(R.styleable.RowItem_iconSrc);
         if (d != null) {
             iconIv.setImageDrawable(d);
-        } else  {
+        } else {
             iconIv.setVisibility(GONE);
         }
 
@@ -89,7 +91,7 @@ public class RowItem extends RelativeLayout {
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp0_5);
         params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         line.setLayoutParams(params);
-        line.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.line_divider));
+        line.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.line_divider));
 
         addView(iconIv);
         addView(titleTv);

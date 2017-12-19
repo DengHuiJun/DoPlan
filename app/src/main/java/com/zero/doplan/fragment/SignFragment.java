@@ -23,7 +23,6 @@ import com.zero.doplan.util.LogUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -128,6 +127,7 @@ public class SignFragment extends Fragment {
 
     /**
      * 分割点
+     *
      * @param calendar
      */
     private void setToMidnight(Calendar calendar) {

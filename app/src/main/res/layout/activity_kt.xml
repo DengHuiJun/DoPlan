@@ -19,12 +19,12 @@
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="false"/>
+        android:text="false" />
 
     <Button
         android:id="@+id/btn_t"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="true"/>
+        android:text="true" />
 
 </LinearLayout>

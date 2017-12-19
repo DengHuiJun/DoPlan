@@ -28,7 +28,7 @@ public class PlanFragment extends BaseObserverFragment {
     private int mPosition;
     private Plan mPlan;
 
-    private static final long DAY_MIS =  60L * 60 * 24 * 1000;
+    private static final long DAY_MIS = 60L * 60 * 24 * 1000;
 
     @BindView(R.id.plan_goals_tv)
     TextView mGoalsTv;
@@ -99,7 +99,7 @@ public class PlanFragment extends BaseObserverFragment {
         mSignLv.setAdapter(mSignAdapter);
     }
 
-    private void refreshPlanUI () {
+    private void refreshPlanUI() {
         if (mPlan == null) return;
 
         mGoalsTv.setText(mPlan.getGoals());
@@ -112,12 +112,12 @@ public class PlanFragment extends BaseObserverFragment {
 
     private long getKeepDays(long startTime) {
         long now = System.currentTimeMillis();
-        return (now - startTime)/DAY_MIS + 1;
+        return (now - startTime) / DAY_MIS + 1;
     }
 
     private long getRestDays(long endTime) {
         long now = System.currentTimeMillis();
-        return (endTime - now)/DAY_MIS;
+        return (endTime - now) / DAY_MIS;
     }
 
     @Override

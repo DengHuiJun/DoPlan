@@ -10,8 +10,7 @@ public class DimenUtil {
     /**
      * 将px值转换为dip或dp值，保证尺寸大小不变
      *
-     * @param pxValue
-     *            （DisplayMetrics类中属性density）
+     * @param pxValue （DisplayMetrics类中属性density）
      * @return
      */
     public static int px2dip(Context context, float pxValue) {
@@ -22,8 +21,7 @@ public class DimenUtil {
     /**
      * 将dip或dp值转换为px值，保证尺寸大小不变
      *
-     * @param dipValue
-     *            （DisplayMetrics类中属性density）
+     * @param dipValue （DisplayMetrics类中属性density）
      * @return
      */
     public static int dip2px(Context context, float dipValue) {
@@ -34,8 +32,7 @@ public class DimenUtil {
     /**
      * 将px值转换为sp值，保证文字大小不变
      *
-     * @param pxValue
-     *            （DisplayMetrics类中属性scaledDensity）
+     * @param pxValue （DisplayMetrics类中属性scaledDensity）
      * @return
      */
     public static int px2sp(Context context, float pxValue) {
@@ -47,8 +44,7 @@ public class DimenUtil {
      * 将sp值转换为px值，保证文字大小不变
      *
      * @param spValue
-     * @param fontScale
-     *            （DisplayMetrics类中属性scaledDensity）
+     * @param fontScale （DisplayMetrics类中属性scaledDensity）
      * @return
      */
     public static int sp2px(Context context, float spValue) {

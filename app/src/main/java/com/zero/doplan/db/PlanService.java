@@ -30,12 +30,11 @@ public class PlanService {
     }
 
     /**
-     *
      * @param planId
      * @return
      */
     public boolean signPlan(long planId) {
-        if (!isSignedToday()) {
+        if (!isSignedToday(planId)) {
             long time = System.currentTimeMillis();
             Sign s = new Sign();
             s.setCreatedTime(time);
@@ -50,9 +49,10 @@ public class PlanService {
         return false;
     }
 
-    public boolean isSignedToday() {
+    public boolean isSignedToday(long id) {
         return DaoHelper.getSignDao().queryBuilder()
-                .where(SignDao.Properties.KeyTodayTime.eq(TimeUtil.getTodayKey()))
+                .where(SignDao.Properties.KeyTodayTime.eq(TimeUtil.getTodayKey())
+                        , SignDao.Properties.PlanId.eq(id))
                 .count() > 0;
     }
 

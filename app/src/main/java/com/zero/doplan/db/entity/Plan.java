@@ -1,19 +1,18 @@
 package com.zero.doplan.db.entity;
 
+import com.zero.doplan.greendao.DaoSession;
+import com.zero.doplan.greendao.PlanDao;
+import com.zero.doplan.greendao.SignDao;
+
+import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.OrderBy;
 import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.List;
-
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.DaoException;
-
-import com.zero.doplan.greendao.DaoSession;
-import com.zero.doplan.greendao.SignDao;
-import com.zero.doplan.greendao.PlanDao;
 
 /**
  * Created by Allen.D on 17/3/12.
@@ -68,8 +67,8 @@ public class Plan {
 
     @Generated(hash = 1960177227)
     public Plan(Long planId, long createdTime, long lastUpdateTime, long startTime,
-            long endTime, int planType, boolean hasDone, int goals, String content,
-            int signTimes) {
+                long endTime, int planType, boolean hasDone, int goals, String content,
+                int signTimes) {
         this.planId = planId;
         this.createdTime = createdTime;
         this.lastUpdateTime = lastUpdateTime;

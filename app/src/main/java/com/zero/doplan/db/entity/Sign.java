@@ -1,9 +1,9 @@
 package com.zero.doplan.db.entity;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Allen.D on 17/3/12.
@@ -34,7 +34,7 @@ public class Sign {
 
     @Generated(hash = 751421876)
     public Sign(Long id, long planId, long signTime, long keyTodayTime,
-            String signContent, long createdTime) {
+                String signContent, long createdTime) {
         this.id = id;
         this.planId = planId;
         this.signTime = signTime;

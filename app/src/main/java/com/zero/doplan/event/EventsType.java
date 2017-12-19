@@ -11,12 +11,14 @@ public class EventsType {
     private static final String PKG = "com.zero.";
 
     public final static String PLAN_ADD_EVENT = PKG + "planAdd";
+    public final static String PLAN_REFRESH_EVENT = PKG + "planRefresh";
 
     /**
      * !!! 所有系统的事件都在此加入事件列表
      */
     private EventsType() {
         eventsTypeSet.add(PLAN_ADD_EVENT);
+        eventsTypeSet.add(PLAN_REFRESH_EVENT);
     }
 
     public static EventsType getInstance() {

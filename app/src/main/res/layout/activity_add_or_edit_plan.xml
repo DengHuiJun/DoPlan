@@ -10,6 +10,6 @@
         android:tag="addPlanFragment"
         android:name="com.zero.doplan.fragment.AddFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

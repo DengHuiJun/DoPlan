@@ -1,10 +1,8 @@
 package com.zero.doplan.ui
 
 import android.os.Bundle
-import com.zero.doplan.kt.BaseActionBarActivity
 import com.zero.doplan.R
-
-import kotlinx.android.synthetic.main.activity_add_or_edit_plan.*
+import com.zero.doplan.kt.BaseActionBarActivity
 
 
 class AddOrEditPlanActivity : BaseActionBarActivity() {

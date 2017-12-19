@@ -8,15 +8,10 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.Window
+import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-
 import com.zero.doplan.R
 
 /**
@@ -35,7 +30,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
     private var mEnabled = true
     private var mWithText = false
 
-    protected var mContext: Context ?= null
+    protected var mContext: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

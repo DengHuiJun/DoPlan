@@ -23,6 +23,7 @@ public class TimeUtil {
 
     /**
      * 获取当天凌晨2点整时刻
+     *
      * @return
      */
     public static long getTodayKey() {

@@ -3,5 +3,4 @@
     android:accountType="com.zero.doplan"
     android:icon="@mipmap/icon_app"
     android:smallIcon="@mipmap/icon_app"
-    android:label="@string/app_name"
-    />
+    android:label="@string/app_name" />
