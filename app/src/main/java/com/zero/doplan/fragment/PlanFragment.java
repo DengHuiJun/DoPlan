@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.zero.doplan.R;
 import com.zero.doplan.adapter.SignAdapter;
+import com.zero.room.entity.Plan;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,7 +78,7 @@ public class PlanFragment extends BaseObserverFragment {
     }
 
     private void loadData(long id) {
-        mPlan = DaoHelper.getPlanDao().loadByRowId(id);
+//        mPlan = DaoHelper.getPlanDao().loadByRowId(id);
     }
 
     @Override
@@ -93,8 +94,8 @@ public class PlanFragment extends BaseObserverFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mSignAdapter = new SignAdapter(mContext, mPlan.getSigns());
-        mSignLv.setAdapter(mSignAdapter);
+//        mSignAdapter = new SignAdapter(mContext, mPlan.getSigns());
+//        mSignLv.setAdapter(mSignAdapter);
     }
 
     private void refreshPlanUI() {
@@ -102,7 +103,7 @@ public class PlanFragment extends BaseObserverFragment {
 
         mGoalsTv.setText(mPlan.getGoals());
 
-        mSignAdapter.setSignList(mPlan.getSigns());
+//        mSignAdapter.setSignList(mPlan.getSigns());
 
         mKeepTv.setText(Long.toString(getKeepDays(mPlan.getStartTime())));
         mRestTv.setText(Long.toString(getRestDays(mPlan.getEndTime())));

@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.zero.room.entity.Sign;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,7 +36,7 @@ public class SignRecordActivity extends BaseActionBarActivity {
         mPlanId = getIntent().getLongExtra(Constant.KEY_PLAN_ID, Constant.INVALID_ID);
 
         if (mPlanId != Constant.INVALID_ID) {
-            mSigns = DaoHelper.getPlanDao().loadByRowId(mPlanId).getSigns();
+//            mSigns = DaoHelper.getPlanDao().loadByRowId(mPlanId).getSigns();
         }
 
         mRecordsRv.setLayoutManager(new LinearLayoutManager(mContext));

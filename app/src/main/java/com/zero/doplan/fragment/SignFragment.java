@@ -1,5 +1,6 @@
 package com.zero.doplan.fragment;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,8 +17,11 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.zero.doplan.Constant;
 import com.zero.doplan.R;
-import com.zero.doplan.greendao.PlanDao;
 import com.zero.doplan.util.LogUtil;
+import com.zero.room.Injection;
+import com.zero.room.PlanViewModel;
+import com.zero.room.ViewModelFactory;
+import com.zero.room.entity.Sign;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +34,8 @@ import java.util.TimeZone;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  *
@@ -57,6 +63,8 @@ public class SignFragment extends Fragment {
 
     private Calendar mCurrentCalendar = Calendar.getInstance(Locale.getDefault());
 
+    private PlanViewModel mViewModel;
+
     public SignFragment() {
         // Required empty public constructor
     }
@@ -79,6 +87,10 @@ public class SignFragment extends Fragment {
         if (args != null) {
             mPlanId = args.getLong(Constant.KEY_PLAN_ID);
         }
+
+        ViewModelFactory factory = Injection.provideViewModelFactory(getActivity());
+        mViewModel = ViewModelProviders.of(this, factory).get(PlanViewModel.class);
+
         LogUtil.d(TAG + "get planId:" + mPlanId);
 
         TimeZone timeZone = TimeZone.getDefault();
@@ -101,21 +113,26 @@ public class SignFragment extends Fragment {
 
         mDateTitleTv.setText(mDateSDF.format(mCalendarView.getFirstDayOfCurrentMonth()));
 
-        addEvent();
-    }
 
-    private void addEvent() {
         if (mPlanId == 0L) {
             return;
         }
+        mViewModel.getPlanSigns(mPlanId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        list -> addEvent(list),
+                        throwable -> {});
+    }
 
-        List<Sign> allSign = DaoHelper.getPlanDao().queryBuilder()
-                .where(PlanDao.Properties.PlanId.eq(mPlanId))
-                .list().get(0).getSigns();
+    private void addEvent(List<Sign> list) {
+        if (list == null || list.isEmpty()) {
+            return;
+        }
 
-        List<Event> eventList = new ArrayList<>(allSign.size());
+        List<Event> eventList = new ArrayList<>(list.size());
 
-        for (Sign sign : allSign) {
+        for (Sign sign : list) {
             Event event = new Event(Color.argb(255, 169, 68, 65), sign.getSignTime(), sign.getSignContent());
             eventList.add(event);
         }
@@ -151,8 +168,14 @@ public class SignFragment extends Fragment {
             time = mSelectTime;
         }
         sign.setSignTime(time);
-        DaoHelper.getSignDao().insert(sign);
-        Snackbar.make(mCalendarView, "保存成功", Snackbar.LENGTH_SHORT).show();
+
+        mViewModel.insertSign(sign)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> Snackbar.make(mCalendarView, "保存成功", Snackbar.LENGTH_SHORT).show(),
+                        t -> {}
+                );
     }
 
     @Override

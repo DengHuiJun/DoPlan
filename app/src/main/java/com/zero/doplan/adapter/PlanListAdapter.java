@@ -14,6 +14,8 @@ import com.zero.doplan.event.EventsType;
 import com.zero.doplan.event.NotificationCenter;
 import com.zero.doplan.util.TimeUtil;
 import com.zero.doplan.util.ToastUtil;
+import com.zero.room.entity.Plan;
+import com.zero.room.entity.Sign;
 
 import java.util.List;
 
@@ -55,18 +57,19 @@ public class PlanListAdapter extends RecyclerView.Adapter<PlanListAdapter.ItemVi
         holder.signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean b = PlanService.getInstance().signPlan(p.getPlanId());
-                if (b) {
-                    ToastUtil.showShort("打卡成功");
-                    NotificationCenter.getInstance().notify(EventsType.PLAN_REFRESH_EVENT);
-                } else {
-                    ToastUtil.showShort("今天已经打过卡了哦~");
-                }
+//                boolean b = PlanService.getInstance().signPlan(p.getPlanId());
+//                if (b) {
+//                    ToastUtil.showShort("打卡成功");
+//                    NotificationCenter.getInstance().notify(EventsType.PLAN_REFRESH_EVENT);
+//                } else {
+//                    ToastUtil.showShort("今天已经打过卡了哦~");
+//                }
             }
         });
 
-        List<Sign> signs = DaoHelper.getSignDao()._queryPlan_Signs(p.getPlanId());
-        int keepDay = signs.size();
+//        List<Sign> signs = DaoHelper.getSignDao()._queryPlan_Signs(p.getPlanId());
+        int keepDay = 0;
+//        signs.size();
         int totalDay = TimeUtil.getDaysByTwoTime(p.getStartTime(), p.getEndTime());
         int n = totalDay - keepDay;
         holder.keepDayTv.setText("Day " + keepDay);

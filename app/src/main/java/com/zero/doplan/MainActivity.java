@@ -29,6 +29,7 @@ import com.zero.doplan.fragment.MsgFragment;
 import com.zero.doplan.fragment.SignFragment;
 import com.zero.doplan.util.DimenUtil;
 import com.zero.doplan.util.LogUtil;
+import com.zero.room.entity.Plan;
 
 import java.util.ArrayList;
 
@@ -358,7 +359,7 @@ public class MainActivity extends BaseActionBarActivity implements HomeFragment.
 
     @Override
     public void onChangePlan(Plan plan) {
-        LogUtil.d(TAG + "onChangePlan: id," + plan.getPlanId());
+        LogUtil.d(TAG + "onChangePlan: id," + plan.getId());
         mSelectPlan = plan;
     }
 

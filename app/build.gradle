@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
@@ -69,12 +68,11 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
-}
 
-greendao {
-    schemaVersion 1
-    daoPackage 'com.zero.doplan.greendao' // 自动生成的代码目录
-    targetGenDir 'src/main/java'
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -85,10 +83,9 @@ dependencies {
 
     compile 'com.github.sundeepk:compact-calendar-view:2.0.1'
 
-//    compile 'org.greenrobot:greendao:3.2.0'
-//    compile 'org.greenrobot:greendao-generator:3.2.0'
-
     compile 'com.jakewharton:butterknife:8.6.0'
+    kapt 'com.jakewharton:butterknife-compiler:8.6.0'
+
     compile 'com.android.support:multidex:1.0.2'
 
     // 每个模块
@@ -97,7 +94,6 @@ dependencies {
     debugCompile 'com.amitshekhar.android:debug-db:1.0.1'
 
     testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 

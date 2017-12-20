@@ -1,11 +1,13 @@
 package com.zero.doplan.fragment;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +15,11 @@ import android.view.ViewGroup;
 import com.zero.doplan.R;
 import com.zero.doplan.adapter.PlanListAdapter;
 import com.zero.doplan.event.EventsType;
-import com.zero.doplan.greendao.PlanDao;
 import com.zero.doplan.ui.AddOrEditPlanActivity;
+import com.zero.room.Injection;
+import com.zero.room.PlanViewModel;
+import com.zero.room.ViewModelFactory;
+import com.zero.room.entity.Plan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +27,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 主页
@@ -34,6 +41,8 @@ public class HomeFragment extends BaseObserverFragment {
 
     private PlanListAdapter mAdapter;
 
+    private PlanViewModel mViewModel;
+
     @BindView(R.id.home_rv)
     RecyclerView mHomeRv;
 
@@ -41,8 +50,15 @@ public class HomeFragment extends BaseObserverFragment {
     }
 
     private void refreshData() {
-        mPlanList = DaoHelper.getPlanDao().queryBuilder().orderAsc(PlanDao.Properties.CreatedTime).limit(10).list();
-        mAdapter.setItems(mPlanList);
+//        mPlanList = DaoHelper.getPlanDao().queryBuilder().orderAsc(PlanDao.Properties.CreatedTime).limit(10).list();
+        mViewModel.getAllPlans()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(list -> {
+                            mPlanList = list;
+                            mAdapter.setItems(mPlanList);
+                        },
+                        throwable -> Log.e("home", "all plans", throwable));
     }
 
     @Override
@@ -71,6 +87,9 @@ public class HomeFragment extends BaseObserverFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        ViewModelFactory factory = Injection.provideViewModelFactory(getActivity());
+        mViewModel = ViewModelProviders.of(this, factory).get(PlanViewModel.class);
 
         mAdapter = new PlanListAdapter(getActivity(), mPlanList);
         mHomeRv.setLayoutManager(new LinearLayoutManager(getActivity()));

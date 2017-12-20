@@ -1,6 +1,7 @@
 package com.zero.doplan.fragment;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -15,7 +16,10 @@ import android.widget.TextView;
 import com.zero.doplan.R;
 import com.zero.doplan.event.EventsType;
 import com.zero.doplan.event.NotificationCenter;
-import com.zero.doplan.greendao.PlanDao;
+import com.zero.room.Injection;
+import com.zero.room.PlanViewModel;
+import com.zero.room.ViewModelFactory;
+import com.zero.room.entity.Plan;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,7 +46,10 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
 
     private DatePickDialogFragment mDialogFragment;
 
-    private PlanDao mPlanDao;
+//    private PlanDao mPlanDao;
+
+    private ViewModelFactory mViewModelFactory;
+    private PlanViewModel mViewModel;
 
     private int mGoalValue;
     private String mGoals;
@@ -73,7 +80,8 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mPlanDao = DaoHelper.getPlanDao();
+        mViewModelFactory = Injection.provideViewModelFactory(getActivity());
+        mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(PlanViewModel.class);
         mStartTime = mEndTime = System.currentTimeMillis();
     }
 
@@ -118,7 +126,8 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
             return;
         }
 
-        mPlanDao.insert(wrapperPlan());
+        mViewModel.updatePlan(wrapperPlan());
+
         clearData();
         Snackbar.make(mGoalsTIL, "保存成功！", Snackbar.LENGTH_SHORT).show();
         NotificationCenter.getInstance().notify(EventsType.PLAN_ADD_EVENT);
