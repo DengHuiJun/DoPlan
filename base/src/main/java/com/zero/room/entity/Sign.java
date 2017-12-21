@@ -15,7 +15,7 @@ import com.zero.room.entity.Plan;
                 childColumns = "planId")
 )
 public class Sign {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long id;
 
     private long planId;

@@ -24,6 +24,8 @@ import com.zero.room.entity.Plan;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 添加计划
@@ -126,12 +128,19 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
             return;
         }
 
-        mViewModel.updatePlan(wrapperPlan());
+        mViewModel.updatePlan(wrapperPlan())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> {
+                            clearData();
+                            Snackbar.make(mGoalsTIL, "保存成功！", Snackbar.LENGTH_SHORT).show();
+                            NotificationCenter.getInstance().notify(EventsType.PLAN_ADD_EVENT);
+                            getActivity().finish();
+                        },
+                        t -> {}
+                );
 
-        clearData();
-        Snackbar.make(mGoalsTIL, "保存成功！", Snackbar.LENGTH_SHORT).show();
-        NotificationCenter.getInstance().notify(EventsType.PLAN_ADD_EVENT);
-        getActivity().finish();
+
     }
 
     private void clearData() {

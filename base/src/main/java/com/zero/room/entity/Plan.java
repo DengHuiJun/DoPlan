@@ -2,6 +2,7 @@ package com.zero.room.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 /**
  * Created by hui_deng on 2017/12/19.
@@ -9,7 +10,8 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "t_plan")
 public class Plan {
 
-    @PrimaryKey
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
     private long id;
 
     private long createdTime;
@@ -30,6 +32,9 @@ public class Plan {
     private String content;
 
     private int signTimes;
+
+    public Plan() {
+    }
 
     public long getId() {
         return id;
