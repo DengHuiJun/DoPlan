@@ -109,6 +109,8 @@ public class MainActivity extends BaseActionBarActivity implements HomeFragment.
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         initOverflowActionBar();
         initView();
         // 默认选中

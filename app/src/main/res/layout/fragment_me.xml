@@ -47,8 +47,9 @@
         app:title="我的任务" />
 
     <com.zero.base.RowItem
+        android:id="@+id/invest_model"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        app:title="我的任务" />
+        app:title="资产管理" />
 
 </LinearLayout>
