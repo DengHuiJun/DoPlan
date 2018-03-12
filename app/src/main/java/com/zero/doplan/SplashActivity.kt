@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import com.zero.doplan.util.LogUtil
 
 /**
- * Created by Allen.D on 17/2/26.
+ * Created by Allen.D on 17/two/26.
  */
 
 class SplashActivity : AppCompatActivity() {

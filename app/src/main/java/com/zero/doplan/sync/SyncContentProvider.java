@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 
 /**
- * Created by Allen.D on 17/2/25.
+ * Created by Allen.D on 17/two/25.
  */
 
 public class SyncContentProvider extends ContentProvider {

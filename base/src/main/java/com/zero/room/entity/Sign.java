@@ -9,10 +9,9 @@ import com.zero.room.entity.Plan;
 /**
  * Created by hui_deng on 2017/12/19.
  */
-@Entity(tableName = "t_sign",
-        foreignKeys = @ForeignKey(entity = Plan.class,
-                parentColumns = "id",
-                childColumns = "planId")
+@Entity(tableName = "t_sign"
+//        foreignKeys = @ForeignKey(entity = Plan.class,
+//                parentColumns = "id", childColumns = "planId")
 )
 public class Sign {
     @PrimaryKey(autoGenerate = true)

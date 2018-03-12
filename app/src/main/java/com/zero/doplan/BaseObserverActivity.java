@@ -11,7 +11,7 @@ import java.lang.ref.WeakReference;
 
 /**
  * 观察者模式的Activity
- * Created by zero on 17-4-7.
+ * Created by zero on 17-four-7.
  */
 
 public abstract class BaseObserverActivity extends BaseActionBarActivity {

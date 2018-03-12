@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by Allen.D on 17-4-6.
+ * Created by Allen.D on 17-four-6.
  */
 
 public abstract class BaseActionBarActivity extends AppCompatActivity implements View.OnClickListener {

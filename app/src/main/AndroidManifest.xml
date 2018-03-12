@@ -15,13 +15,7 @@
             android:name=".SplashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -59,7 +53,6 @@
 
         <activity android:name=".PlanCenterActivity" />
         <activity android:name=".SignRecordActivity" />
-        <activity android:name=".KtActivity" />
         <activity
             android:name=".ui.AddOrEditPlanActivity"
             android:configChanges="orientation|screenSize"
@@ -68,8 +61,17 @@
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/BaseAppTheme" />
-        <activity android:name=".invest.InvestListActivity" />
-        <activity android:name=".invest.AddInvestActivity"></activity>
+        <activity android:name=".invest.AddInvestActivity" />
+        <activity android:name=".canteen.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".canteen.CanteenActivity" />
+        <activity android:name=".canteen.OrdersActivity" />
+        <activity android:name=".canteen.DetailCanteenActivity"></activity>
     </application>
 
 </manifest>

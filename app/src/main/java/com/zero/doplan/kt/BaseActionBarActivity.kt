@@ -16,7 +16,7 @@ import android.widget.TextView
 import com.zero.doplan.R
 
 /**
- * Created by Allen.D on 17-4-6.
+ * Created by Allen.D on 17-four-6.
  */
 
 abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener {
@@ -210,7 +210,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
         supportInvalidateOptionsMenu()
     }
 
-    protected fun onRightMenuClick(item: MenuItem) {
+    open fun onRightMenuClick(item: MenuItem) {
 
     }
 
@@ -225,6 +225,6 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
 
     companion object {
 
-        private val MENU_ITEM_ID_RIGHT = Menu.FIRST + 99
+        public val MENU_ITEM_ID_RIGHT = Menu.FIRST + 99
     }
 }

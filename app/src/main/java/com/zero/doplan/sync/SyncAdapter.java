@@ -9,7 +9,7 @@ import android.content.SyncResult;
 import android.os.Bundle;
 
 /**
- * Created by Allen.D on 17/2/25.
+ * Created by Allen.D on 17/two/25.
  */
 
 public class SyncAdapter extends AbstractThreadedSyncAdapter {
