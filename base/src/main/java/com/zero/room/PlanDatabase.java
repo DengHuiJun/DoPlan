@@ -5,8 +5,11 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.zero.room.dao.MenuDao;
+import com.zero.room.dao.OrderDao;
 import com.zero.room.dao.PlanDao;
 import com.zero.room.dao.SignDao;
+import com.zero.room.dao.UserDao;
 import com.zero.room.entity.Plan;
 import com.zero.room.entity.Sign;
 
@@ -19,6 +22,9 @@ public abstract class PlanDatabase extends RoomDatabase {
 
     public abstract PlanDao planDao();
     public abstract SignDao signDao();
+    public abstract MenuDao menuDao();
+    public abstract OrderDao orderDao();
+    public abstract UserDao userDao();
 
     public static PlanDatabase getInstance(Context context) {
         if (INSTANCE == null) {
