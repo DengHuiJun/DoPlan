@@ -7,4 +7,6 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="common_bg">#d0d9ff</color>
+
+    <color name="white">#fff</color>
 </resources>

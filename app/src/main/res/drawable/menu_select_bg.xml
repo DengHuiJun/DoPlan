@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_enabled="false"
+        android:color="@color/common_bg" /><!--控件是否接受触摸或者点击事件时的颜色,false不接受-->
+
+    <item android:state_pressed="true"
+        android:color="@color/colorPrimaryDark" /><!--是否按下，如一个按钮触摸或者点击,true按下-->
+
+    <item android:state_focused="true"
+        android:color="@color/colorPrimary" /><!--是否取得焦点,true取的焦点-->
+</selector>
