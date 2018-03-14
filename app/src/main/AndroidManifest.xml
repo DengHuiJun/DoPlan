@@ -16,11 +16,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" />
-        <activity
-            android:name=".MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/BaseAppTheme" />
 
         <service android:name=".sync.AuthenticatorService">
             <intent-filter>
@@ -51,16 +46,6 @@
                 android:resource="@xml/syncadapter" />
         </service>
 
-        <activity android:name=".PlanCenterActivity" />
-        <activity android:name=".SignRecordActivity" />
-        <activity
-            android:name=".ui.AddOrEditPlanActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/BaseAppTheme" />
         <activity android:name=".invest.AddInvestActivity" />
         <activity android:name=".canteen.LoginActivity">
             <intent-filter>

@@ -24,16 +24,16 @@ import android.arch.lifecycle.ViewModelProvider;
  */
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
-    private final PlanDataSource mDataSource;
+    private final CanteenDataSource mDataSource;
 
-    public ViewModelFactory(PlanDataSource dataSource) {
+    public ViewModelFactory(CanteenDataSource dataSource) {
         mDataSource = dataSource;
     }
 
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(PlanViewModel.class)) {
-            return (T) new PlanViewModel(mDataSource);
+        if (modelClass.isAssignableFrom(CanteenViewModel.class)) {
+            return (T) new CanteenViewModel(mDataSource);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

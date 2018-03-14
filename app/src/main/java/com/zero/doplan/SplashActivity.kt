@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import com.zero.doplan.canteen.CanteenActivity
 
 import com.zero.doplan.util.LogUtil
 
@@ -26,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun goMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, CanteenActivity::class.java)
         startActivity(intent)
     }
 

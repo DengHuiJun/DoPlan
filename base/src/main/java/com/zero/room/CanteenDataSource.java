@@ -6,5 +6,5 @@ package com.zero.room;
 
 public interface CanteenDataSource {
 
-
+    long checkLogin(String username, String pwd);
 }

@@ -23,13 +23,12 @@ import android.content.Context;
  */
 public class Injection {
 
-    public static PlanDataSource provideUserDataSource(Context context) {
-        PlanDatabase database = PlanDatabase.getInstance(context);
-        return new LocalPlanDataSource(database.planDao(), database.signDao(), database.userDao());
+    public static CanteenDataSource provideUserDataSource(Context context) {
+        return new LocalCanteenDataSource(DBManager.db.menuDao(), DBManager.db.orderDao(), DBManager.db.userDao());
     }
 
     public static ViewModelFactory provideViewModelFactory(Context context) {
-        PlanDataSource dataSource = provideUserDataSource(context);
+        CanteenDataSource dataSource = provideUserDataSource(context);
         return new ViewModelFactory(dataSource);
     }
 }

@@ -8,11 +8,10 @@ import com.zero.doplan.R
 import com.zero.doplan.kt.BaseActionBarActivity
 import com.zero.doplan.util.ToastUtil
 import com.zero.room.Injection
-import com.zero.room.PlanDataSource
-import com.zero.room.PlanDatabase
-import com.zero.room.dao.UserDao
-import com.zero.room.entity.User
 import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -26,22 +25,26 @@ class LoginActivity : BaseActionBarActivity() {
 
         Glide.with(this).load(R.drawable.ssbg).into(bgIv)
 
-        val p = Injection.provideUserDataSource(this)
-
         loginBtn.setOnClickListener({
             val un = useNameEt.text.toString()
             val pwd = pwdEt.text.toString()
 
-//            Observable.create()
-
-            val id = p.checkLogin(un, pwd)
-
-            if (id < 0) {
-                ToastUtil.showShort("用户名或密码错误！")
-            } else {
-                AppContext.sUserId = id
-                goMain()
-            }
+            Observable.create(ObservableOnSubscribe<Long> {
+                val uid = Injection.provideUserDataSource(this).checkLogin(un, pwd)
+                it.onNext(uid)
+                it.onComplete()
+            }).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        if (it < 0) {
+                            ToastUtil.showShort("用户名或密码错误！")
+                        } else {
+                            AppContext.sUserId = it
+                            goMain()
+                        }
+                    }, {
+                        ToastUtil.showShort("系统异常！")
+                    })
         })
     }
 
