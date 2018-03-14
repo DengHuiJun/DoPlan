@@ -25,7 +25,7 @@ public class Injection {
 
     public static PlanDataSource provideUserDataSource(Context context) {
         PlanDatabase database = PlanDatabase.getInstance(context);
-        return new LocalPlanDataSource(database.planDao(), database.signDao());
+        return new LocalPlanDataSource(database.planDao(), database.signDao(), database.userDao());
     }
 
     public static ViewModelFactory provideViewModelFactory(Context context) {

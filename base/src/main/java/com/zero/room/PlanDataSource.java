@@ -21,4 +21,6 @@ public interface PlanDataSource {
     void insertOrUpdatePlan(Plan plan);
 
     void insertOrUpdateSign(Sign sign);
+
+    long checkLogin(String username, String pwd);
 }

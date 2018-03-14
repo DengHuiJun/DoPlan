@@ -2,8 +2,10 @@ package com.zero.room;
 
 import com.zero.room.dao.PlanDao;
 import com.zero.room.dao.SignDao;
+import com.zero.room.dao.UserDao;
 import com.zero.room.entity.Plan;
 import com.zero.room.entity.Sign;
+import com.zero.room.entity.User;
 
 import java.util.List;
 
@@ -17,10 +19,12 @@ public class LocalPlanDataSource implements PlanDataSource {
 
     private final PlanDao mPlanDao;
     private final SignDao mSignDao;
+    private final UserDao mUserDao;
 
-    public LocalPlanDataSource(PlanDao planDao, SignDao signDao) {
+    public LocalPlanDataSource(PlanDao planDao, SignDao signDao, UserDao userDao) {
         mPlanDao = planDao;
         mSignDao = signDao;
+        mUserDao = userDao;
     }
 
 
@@ -42,5 +46,14 @@ public class LocalPlanDataSource implements PlanDataSource {
     @Override
     public void insertOrUpdateSign(Sign sign) {
         mSignDao.insertOrUpdate(sign);
+    }
+
+    @Override
+    public long checkLogin(String username, String pwd) {
+        User user = mUserDao.checkLogin(username, pwd);
+        if (user != null) {
+            return user.getUid();
+        }
+        return -1L;
     }
 }

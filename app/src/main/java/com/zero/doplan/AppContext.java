@@ -12,6 +12,7 @@ public class AppContext extends Application {
 
     public static Context sContext;
     public static final boolean ENCRYPTED = false;
+    public static long sUserId = -1;
 
     @Override
     protected void attachBaseContext(Context base) {

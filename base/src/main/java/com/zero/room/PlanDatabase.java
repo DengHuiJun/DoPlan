@@ -10,13 +10,16 @@ import com.zero.room.dao.OrderDao;
 import com.zero.room.dao.PlanDao;
 import com.zero.room.dao.SignDao;
 import com.zero.room.dao.UserDao;
+import com.zero.room.entity.Menu;
+import com.zero.room.entity.Order;
 import com.zero.room.entity.Plan;
 import com.zero.room.entity.Sign;
+import com.zero.room.entity.User;
 
 /**
  * Created by hui_deng on 2017/12/19.
  */
-@Database(entities = {Plan.class,Sign.class}, version = 1)
+@Database(entities = {Plan.class,Sign.class, Menu.class, Order.class, User.class}, version = 1, exportSchema = false)
 public abstract class PlanDatabase extends RoomDatabase {
     private static volatile PlanDatabase INSTANCE;
 

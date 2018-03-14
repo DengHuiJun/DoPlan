@@ -3,6 +3,7 @@ package com.zero.room.dao;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
 
 import com.zero.room.entity.User;
 
@@ -15,5 +16,8 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.FAIL)
     void insert(User user);
 
-    boolean checkUser();
+    @Query("SELECT * FROM t_user where username = :username and pwd = :password")
+    User checkLogin(String username, String password);
+
+
 }

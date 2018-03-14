@@ -33,7 +33,7 @@ class CanteenActivity : BaseActionBarActivity() {
         startActivity(Intent(this, OrdersActivity::class.java))
     }
 
-    fun toDetail(title: String, id : Int) {
+    private fun toDetail(title: String, id : Int) {
         val intent = Intent(this, DetailCanteenActivity::class.java)
         intent.putExtra("title", title)
         intent.putExtra("id", id)
