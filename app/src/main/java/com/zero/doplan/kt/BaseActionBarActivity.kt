@@ -147,10 +147,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val rightMenuItem = menu.add(0, MENU_ITEM_ID_RIGHT, 0, mMenuText)
-        if (mMenuIconDrawable != null) {
-            // TODO 点击变色
-            //            DrawableUtil.setMenuTintIcon(rightMenuItem,mMenuIconDrawable);
-        }
+        rightMenuItem.icon = mMenuIconDrawable
         rightMenuItem.isEnabled = mEnabled
         if (mWithText) {
             MenuItemCompat.setShowAsAction(rightMenuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS or MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT)

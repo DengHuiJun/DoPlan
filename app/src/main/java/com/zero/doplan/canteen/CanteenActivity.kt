@@ -16,11 +16,11 @@ class CanteenActivity : BaseActionBarActivity() {
         setTitleText("所有食堂")
 
         setRighMenuVisible(true)
-        setRightMenuIcon(R.drawable.ic_menu_black_24dp)
+        setRightMenuIcon(R.drawable.ic_actionbar_head)
 
         listView.adapter = CanteenAdapter(this)
         listView.setOnItemClickListener({
-            parent, view, position, id ->
+            _, _, position, id ->
                 val ada = listView.adapter
                 if (ada is CanteenAdapter) {
                     toDetail(ada.getItem(position).name, id.toInt())

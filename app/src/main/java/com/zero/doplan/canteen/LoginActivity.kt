@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.zero.doplan.AppContext
 import com.zero.doplan.R
 import com.zero.doplan.kt.BaseActionBarActivity
+import com.zero.doplan.util.SharePreferencesUtils
 import com.zero.doplan.util.ToastUtil
 import com.zero.room.Injection
 import io.reactivex.Observable
@@ -25,6 +26,11 @@ class LoginActivity : BaseActionBarActivity() {
 
         Glide.with(this).load(R.drawable.ssbg).into(bgIv)
 
+        val dun = SharePreferencesUtils.getString("username", "")
+        val dpwd = SharePreferencesUtils.getString("pwd", "")
+        useNameEt.setText(dun)
+        pwdEt.setText(dpwd)
+
         loginBtn.setOnClickListener({
             val un = useNameEt.text.toString()
             val pwd = pwdEt.text.toString()
@@ -38,7 +44,16 @@ class LoginActivity : BaseActionBarActivity() {
                     .subscribe({
                         if (it < 0) {
                             ToastUtil.showShort("用户名或密码错误！")
+
+
+                            SharePreferencesUtils.putString("username", "")
+                            SharePreferencesUtils.putString("pwd", "")
+
                         } else {
+                            // 默认记住密码
+                            SharePreferencesUtils.putString("username", un)
+                            SharePreferencesUtils.putString("pwd", pwd)
+
                             AppContext.sUserId = it
                             goMain()
                         }

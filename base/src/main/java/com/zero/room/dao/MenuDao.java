@@ -22,4 +22,7 @@ public interface MenuDao {
 
     @Query("SELECT * FROM t_menu where canteenId = :canteenId")
     List<Menu> getMenuByCanteen(int canteenId);
+
+    @Query("SELECT * FROM t_menu where id = :id")
+    Menu getMenuById(long id);
 }

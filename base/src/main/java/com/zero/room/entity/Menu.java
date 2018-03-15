@@ -1,6 +1,7 @@
 package com.zero.room.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
@@ -29,6 +30,9 @@ public class Menu {
     private String intro;
 
     private String imgKey;
+
+    @Ignore
+    private long orderId;
 
     public long getId() {
         return id;
@@ -100,5 +104,13 @@ public class Menu {
 
     public void setImgKey(String imgKey) {
         this.imgKey = imgKey;
+    }
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
     }
 }
