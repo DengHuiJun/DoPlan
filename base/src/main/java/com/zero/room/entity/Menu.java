@@ -5,7 +5,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Created by hui_deng on 2018/3/13.
+ * Created by zk on 2018/3/13.
  */
 @Entity(tableName = "t_menu")
 public class Menu {

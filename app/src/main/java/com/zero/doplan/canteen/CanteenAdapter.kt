@@ -12,7 +12,7 @@ import com.zero.doplan.AppContext
 import com.zero.doplan.R
 
 /**
- * Created by zerogeek on 2018/three/11.
+ * Created by zk on 2018/three/11.
  */
 class CanteenAdapter(context : Context) : BaseAdapter() {
 

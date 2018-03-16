@@ -17,7 +17,7 @@ import android.widget.TextView;
  * 带图标和文字的Item
  * 选中，则自动给icon和文字上色
  * 否则，去色
- * Created by Allen.D on 17/7/9.
+ * Created by zk
  */
 
 public class IconItem extends LinearLayout {

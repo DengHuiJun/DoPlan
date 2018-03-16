@@ -11,7 +11,7 @@ import com.zero.room.entity.Order;
 import com.zero.room.entity.User;
 
 /**
- * Created by hui_deng on 2017/12/19.
+ * Created by zk on 2017/12/19.
  */
 @Database(entities = {Menu.class, Order.class, User.class}, version = 1, exportSchema = false)
 public abstract class CanteenDatabase extends RoomDatabase {

@@ -4,7 +4,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 /**
- * Created by hui_deng on 2017/12/19.
+ * Created by zk
  */
 
 public abstract class BasePresenter {

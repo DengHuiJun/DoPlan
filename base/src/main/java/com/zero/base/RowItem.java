@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * Created by Allen.D on 17/7/15.
+ * Created by zk
  */
 
 public class RowItem extends RelativeLayout {

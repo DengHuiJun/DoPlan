@@ -3,7 +3,7 @@ package com.zero.base;
 import android.content.Context;
 
 /**
- * Created by Allen.D on 17/7/16.
+ * Created by zk
  */
 
 public class DensityUtil {
