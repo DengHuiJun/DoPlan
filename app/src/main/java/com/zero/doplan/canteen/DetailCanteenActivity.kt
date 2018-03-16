@@ -8,7 +8,6 @@ import android.view.MenuItem
 import com.zero.base.DBConstants
 import com.zero.doplan.AppContext
 import com.zero.doplan.R
-import com.zero.doplan.kt.BaseActionBarActivity
 import com.zero.doplan.util.ToastUtil
 import com.zero.room.DBManager
 import com.zero.room.entity.Menu

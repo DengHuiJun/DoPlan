@@ -3,7 +3,6 @@ package com.zero.doplan.canteen
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import com.zero.doplan.kt.BaseActionBarActivity
 import com.zero.doplan.R
 import kotlinx.android.synthetic.main.activity_canteen.*
 

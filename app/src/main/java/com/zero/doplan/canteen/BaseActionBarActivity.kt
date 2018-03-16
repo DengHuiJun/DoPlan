@@ -1,4 +1,4 @@
-package com.zero.doplan.kt
+package com.zero.doplan.canteen
 
 import android.content.Context
 import android.graphics.drawable.Drawable

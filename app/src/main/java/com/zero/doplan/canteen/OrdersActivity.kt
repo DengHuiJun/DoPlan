@@ -3,7 +3,6 @@ package com.zero.doplan.canteen
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import com.zero.doplan.AppContext
-import com.zero.doplan.kt.BaseActionBarActivity
 import com.zero.doplan.R
 import com.zero.room.DBManager
 import com.zero.room.Injection
