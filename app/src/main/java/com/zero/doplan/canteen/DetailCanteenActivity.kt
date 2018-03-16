@@ -3,11 +3,13 @@ package com.zero.doplan.canteen
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AlertDialog
 import android.view.MenuItem
 import com.zero.base.DBConstants
 import com.zero.doplan.AppContext
 import com.zero.doplan.R
+import com.zero.doplan.util.TintUtil
 import com.zero.doplan.util.ToastUtil
 import com.zero.room.DBManager
 import com.zero.room.entity.Menu
@@ -41,6 +43,27 @@ class DetailCanteenActivity : BaseActionBarActivity(), MenuListAdapter.ClickItem
                 .setNegativeButton("取消") { _, _ -> }
         builder.create()
         builder.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: android.view.Menu): Boolean {
+        val rightMenuItem = menu.add(0, MENU_ITEM_ID_RIGHT_SEARCH, 0, "搜索")
+        rightMenuItem.icon = TintUtil.tintDrawable(ContextCompat.getDrawable(this, R.drawable.ic_search_black_24dp), ContextCompat.getColor(this, R.color.white))
+        rightMenuItem.isEnabled = true
+        MenuItemCompat.setShowAsAction(rightMenuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS or MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var consume = true
+        when (item.itemId) {
+            MENU_ITEM_ID_RIGHT_SEARCH -> onSearchClick()
+            else -> consume = super.onOptionsItemSelected(item)
+        }
+        return consume
+    }
+
+    private fun onSearchClick() {
+        startActivity(Intent(this, SearchActivity::class.java))
     }
 
     override fun onRightMenuClick(item: MenuItem) {
@@ -81,21 +104,21 @@ class DetailCanteenActivity : BaseActionBarActivity(), MenuListAdapter.ClickItem
     private fun changeDataAndBgColor(type: Int) {
         when (type) {
             DBConstants.TYPE_MORN -> {
-                morningTV.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                morningTV.setBackgroundColor(ContextCompat.getColor(this, R.color.new_color_text_c6))
                 afternoonTv.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
                 dinnerTv.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
 
             }
             DBConstants.TYPE_NOON -> {
                 morningTV.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
-                afternoonTv.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                afternoonTv.setBackgroundColor(ContextCompat.getColor(this, R.color.new_color_text_c6))
                 dinnerTv.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
 
             }
             DBConstants.TYPE_NIGHT -> {
                 morningTV.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
                 afternoonTv.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
-                dinnerTv.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                dinnerTv.setBackgroundColor(ContextCompat.getColor(this, R.color.new_color_text_c6))
             }
             else -> {
                 ToastUtil.showShort("类型错误~")

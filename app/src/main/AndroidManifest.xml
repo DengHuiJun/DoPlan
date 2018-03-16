@@ -16,7 +16,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" />
-
         <activity android:name=".canteen.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,12 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".canteen.CanteenActivity" />
-
         <activity android:name=".canteen.OrdersActivity" />
-
         <activity android:name=".canteen.DetailCanteenActivity" />
+        <activity android:name=".canteen.SearchActivity"
+            android:theme="@style/BaseAppTheme.SearchActivity"
+            />
     </application>
 
 </manifest>

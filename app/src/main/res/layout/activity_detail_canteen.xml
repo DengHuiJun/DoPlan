@@ -8,26 +8,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="@color/common_bg">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_search_black_24dp" />
-
-        <EditText
-            android:id="@+id/searchEt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="请输入搜索关键字"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 

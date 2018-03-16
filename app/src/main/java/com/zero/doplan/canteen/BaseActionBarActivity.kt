@@ -221,7 +221,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
     }
 
     companion object {
-
+        public val MENU_ITEM_ID_RIGHT_SEARCH = Menu.FIRST + 98
         public val MENU_ITEM_ID_RIGHT = Menu.FIRST + 99
     }
 }
