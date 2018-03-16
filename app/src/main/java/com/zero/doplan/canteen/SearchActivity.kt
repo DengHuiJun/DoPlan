@@ -81,7 +81,7 @@ class SearchActivity : AppCompatActivity(), MenuListAdapter.ClickItemOrder {
     }
 
     private fun loadData() {
-        DBManager.db.menuDao().searchMenuByKeyWord("%" + keyWords)
+        DBManager.db.menuDao().searchMenuByKeyWord("%" + keyWords +"%")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {

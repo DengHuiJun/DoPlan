@@ -58,7 +58,7 @@ android {
 
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
-            minifyEnabled true
+            minifyEnabled false
             // 没有配置代码混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.doplan
