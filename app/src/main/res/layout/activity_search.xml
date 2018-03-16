@@ -63,8 +63,6 @@
         android:id="@+id/searchLv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:background="@color/white"/>
 
 </LinearLayout>

@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
@@ -20,7 +20,7 @@
             <TextView
                 android:id="@+id/morningTV"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:gravity="center"
                 android:text="早餐"/>
 
@@ -32,7 +32,7 @@
             <TextView
                 android:id="@+id/afternoonTv"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:gravity="center"
                 android:text="午餐"/>
 
@@ -44,7 +44,7 @@
             <TextView
                 android:id="@+id/dinnerTv"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:gravity="center"
                 android:text="晚餐"/>
 

@@ -9,6 +9,9 @@ import com.zero.room.entity.Menu;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+import io.reactivex.internal.operators.flowable.FlowableTakeLastOne;
+
 /**
  * Created by hui_deng on 2018/3/13.
  */
@@ -25,4 +28,7 @@ public interface MenuDao {
 
     @Query("SELECT * FROM t_menu where id = :id")
     Menu getMenuById(long id);
+
+    @Query("SELECT * FROM t_menu where name like + :keyword ")
+    Flowable<List<Menu>> searchMenuByKeyWord(String keyword);
 }

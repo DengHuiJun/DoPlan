@@ -26,6 +26,7 @@ object DBManager {
         // 1号食堂
 //        db.menuDao().insert(getMenu(ONE_CANTEEN, TYPE_MORN, "菜包", 1.0, ""))
         db.menuDao().insert(getMenu(ONE_CANTEEN, TYPE_MORN, "肉包", 1.5, ONE_M_ROUBAO))
+        db.menuDao().insert(getMenu(ONE_CANTEEN, TYPE_MORN, "ww", 1.5, ONE_M_ROUBAO))
 
         db.menuDao().insert(getMenu(ONE_CANTEEN, TYPE_NOON, "牛肉炒饭", 7.0, NIU_ROU_CHAO_FAN))
         db.menuDao().insert(getMenu(ONE_CANTEEN, TYPE_NOON, "蛋炒饭", 5.5, TWO_N_CHAOFAN))

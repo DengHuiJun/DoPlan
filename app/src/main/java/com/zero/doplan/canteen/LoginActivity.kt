@@ -21,7 +21,7 @@ class LoginActivity : BaseActionBarActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        setTitleText("食堂订餐系统")
+        setTitleText("订餐宝")
 
         Glide.with(this).load(R.drawable.ssbg).into(bgIv)
 

@@ -47,7 +47,7 @@ class DetailCanteenActivity : BaseActionBarActivity(), MenuListAdapter.ClickItem
 
     override fun onCreateOptionsMenu(menu: android.view.Menu): Boolean {
         val rightMenuItem = menu.add(0, MENU_ITEM_ID_RIGHT_SEARCH, 0, "搜索")
-        rightMenuItem.icon = TintUtil.tintDrawable(ContextCompat.getDrawable(this, R.drawable.ic_search_black_24dp), ContextCompat.getColor(this, R.color.white))
+        rightMenuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_action_search)
         rightMenuItem.isEnabled = true
         MenuItemCompat.setShowAsAction(rightMenuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS or MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT)
         return super.onCreateOptionsMenu(menu)
