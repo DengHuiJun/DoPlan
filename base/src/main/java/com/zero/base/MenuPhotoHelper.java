@@ -32,6 +32,8 @@ public class MenuPhotoHelper {
     public static final String zhimabing = "zhimabing";
     public static final String zhou = "zhou";
 
+    public static final String jiaozi = "jiaozi";
+
     public static final HashMap<String, Integer> IMG = new HashMap<>();
 
     static {
@@ -57,6 +59,8 @@ public class MenuPhotoHelper {
         IMG.put(youtiao, R.drawable.youtiao);
         IMG.put(zhimabing, R.drawable.zhimabing);
         IMG.put(zhou, R.drawable.zhou);
+
+        IMG.put(jiaozi, R.drawable.jiaozi);
 
     }
 

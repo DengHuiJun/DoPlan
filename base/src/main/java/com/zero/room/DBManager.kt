@@ -68,6 +68,8 @@ object DBManager {
         db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_MORN, "芝麻饼", 1.0, zhimabing))
         db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_MORN, "豆浆", 2.0, doujiang))
         db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_MORN, "馄饨", 6.5, hundun))
+        db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_MORN, "麻团", 1.5, matuan))
+        db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_MORN, "芝麻饼", 1.0, zhimabing))
 
         db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_NOON, "宫保鸡丁", 12.0, shaoqiezi))
         db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_NOON, "鸡腿饭", 10.0, ONE_N_JITUI))
@@ -79,10 +81,16 @@ object DBManager {
 
         db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_NIGHT, "白米粥", 3.0, zhou))
         db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_NIGHT, "鸡肉炒饭", 6.0, TWO_N_CHAOFAN))
+        db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_NIGHT, "西红柿炒蛋", 5.0, ONE_NN_XIHONGSHI))
+        db.menuDao().insert(getMenu(THREE_CANTEEN, TYPE_NIGHT, "牛肉炒饭", 7.0, NIU_ROU_CHAO_FAN))
 
 
         // 4号
         db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_MORN, "黑芝麻饼", 1.0, zhimabing))
+        db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_MORN, "油条", 1.0, youtiao))
+        db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_MORN, "茶叶蛋", 1.5, chayedan))
+        db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_MORN, "豆浆", 2.0, doujiang))
+        db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_MORN, "麻团", 1.5, matuan))
 
         db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_NOON, "烧茄子", 8.0, shaoqiezi))
         db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_NOON, "西红柿炒蛋", 5.0, ONE_NN_XIHONGSHI))
@@ -91,9 +99,17 @@ object DBManager {
         db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_NOON, "麻婆豆腐", 5.5, mapodoufu))
 
         db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_NIGHT, "牛肉米粉", 6.0, mifen))
+        db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_NIGHT, "剁椒鱼头", 10.0, duojiaoyutou))
+        db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_NIGHT, "烧茄子", 8.0, shaoqiezi))
+        db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_NIGHT, "西红柿炒蛋", 5.0, ONE_NN_XIHONGSHI))
+        db.menuDao().insert(getMenu(FOUR_CANTEEN, TYPE_NIGHT, "牛肉炒饭", 7.0, NIU_ROU_CHAO_FAN))
 
         // 5号
         db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_MORN, "馄饨", 6.0, hundun))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_MORN, "油条", 1.0, youtiao))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_MORN, "茶叶蛋", 1.5, chayedan))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_MORN, "豆浆", 2.0, doujiang))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_MORN, "麻团", 1.5, matuan))
 
         db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NOON, "剁椒鱼头", 10.0, duojiaoyutou))
         db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NOON, "烧茄子", 8.0, shaoqiezi))
@@ -103,6 +119,11 @@ object DBManager {
         db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NOON, "麻婆豆腐", 5.5, mapodoufu))
 
         db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NIGHT, "鸡肉炒饭", 6.0, TWO_N_CHAOFAN))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NIGHT, "烧茄子", 8.0, shaoqiezi))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NIGHT, "西红柿炒蛋", 5.0, ONE_NN_XIHONGSHI))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NIGHT, "牛肉炒饭", 7.0, NIU_ROU_CHAO_FAN))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NIGHT, "蛋炒饭", 5.5, TWO_N_CHAOFAN))
+        db.menuDao().insert(getMenu(FIVE_CANTEEN, TYPE_NIGHT, "麻婆豆腐", 5.5, mapodoufu))
 
     }
 

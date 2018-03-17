@@ -29,6 +29,6 @@ public interface MenuDao {
     @Query("SELECT * FROM t_menu where id = :id")
     Menu getMenuById(long id);
 
-    @Query("SELECT * FROM t_menu where name like + :keyword ")
+    @Query("SELECT * FROM t_menu where name like + :keyword group by name")
     Flowable<List<Menu>> searchMenuByKeyWord(String keyword);
 }
