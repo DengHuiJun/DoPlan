@@ -44,7 +44,6 @@ public class DimenUtil {
      * 将sp值转换为px值，保证文字大小不变
      *
      * @param spValue
-     * @param fontScale （DisplayMetrics类中属性scaledDensity）
      * @return
      */
     public static int sp2px(Context context, float spValue) {

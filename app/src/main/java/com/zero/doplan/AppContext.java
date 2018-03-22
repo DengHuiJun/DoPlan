@@ -5,9 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.zero.doplan.util.SharePreferencesUtils;
-import com.zero.room.CanteenDatabase;
 import com.zero.room.DBManager;
-import com.zero.room.Injection;
 
 /**
  * Created by Allen.D on 17/1/10.

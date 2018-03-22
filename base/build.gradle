@@ -66,12 +66,12 @@ dependencies {
     api "android.arch.persistence.room:rxjava2:1.0.0"
 
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.2'
 
     api "android.arch.paging:runtime:1.0.0-alpha4-1"
 
     testCompile 'junit:junit:4.12'
 
+    // 数据库调试
     debugApi 'com.amitshekhar.android:debug-db:1.0.1'
 }

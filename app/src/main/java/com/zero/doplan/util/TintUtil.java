@@ -34,7 +34,6 @@ public class TintUtil {
             Bitmap normalBitmap = ((BitmapDrawable) drawable).getBitmap();
             Bitmap pressedBitmap = Bitmap.createBitmap(
                     normalBitmap.getWidth(),
-
                     normalBitmap.getHeight(), Bitmap.Config.ARGB_8888);
             pressedBitmap.setDensity(normalBitmap.getDensity());
             Canvas canvas = new Canvas(pressedBitmap);

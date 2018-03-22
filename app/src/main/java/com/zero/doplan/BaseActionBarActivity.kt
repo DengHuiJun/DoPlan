@@ -1,4 +1,4 @@
-package com.zero.doplan.canteen
+package com.zero.doplan
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -13,7 +13,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.zero.doplan.R
 
 /**
  * Created by Allen.D on 17-four-6.

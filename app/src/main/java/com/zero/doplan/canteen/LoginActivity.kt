@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.zero.doplan.AppContext
-import com.zero.doplan.R
+import com.zero.doplan.BaseActionBarActivity
 import com.zero.doplan.util.SharePreferencesUtils
 import com.zero.doplan.util.ToastUtil
 import com.zero.room.Injection

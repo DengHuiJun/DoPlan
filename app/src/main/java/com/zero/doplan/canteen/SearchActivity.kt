@@ -1,21 +1,18 @@
 package com.zero.doplan.canteen
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import com.zero.doplan.AppContext
-import com.zero.doplan.R
 import com.zero.doplan.util.ToastUtil
 import com.zero.room.DBManager
-import com.zero.room.Injection
 import com.zero.room.entity.Menu
 import com.zero.room.entity.Order
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity(), MenuListAdapter.ClickItemOrder {

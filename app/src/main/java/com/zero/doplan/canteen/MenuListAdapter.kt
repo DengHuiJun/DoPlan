@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.zero.base.MenuPhotoHelper
 import com.zero.doplan.AppContext
-import com.zero.doplan.R
 import com.zero.room.entity.Menu
 
 /**

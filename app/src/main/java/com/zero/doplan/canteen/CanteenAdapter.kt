@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.zero.doplan.AppContext
-import com.zero.doplan.R
 
 /**
  * Created by zk on 2018/three/11.
