@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#03a9f4</color>
-    <color name="colorPrimaryDark">#03a9f4</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#b0bec5</color>
+    <color name="colorPrimaryLight">#e2f1f8</color>
+    <color name="colorPrimaryDark">#808e95</color>
 
-    <color name="white">#fff</color>
+    <color name="colorAccent">#90caf9</color>
 
+    <!-- button-->
     <color name="color_main_bottom">#eceff1</color>
 
-
+    <!--font-->
     <color name="colorMainText">#263238</color>
     <color name="colorMemoText">#78909c</color>
 
+    <color name="fontPrimary">#8c000000</color>
+    <color name="fontPrimaryLight">#99000000</color>
+    <color name="fontPrimaryDark">#72000000</color>
+    <color name="fontPrimaryDarkWhite">#21ffffff</color>
+
+    <!--other-->
     <color name="colorGreen">#0a8f08</color>
     <color name="colorRed">#d01701</color>
+    <color name="white">#fff</color>
 
     <color name="toolbarSelectBg">#FFFFFF</color>
 
+
+    <color name="common_bg">#33efebe9</color>
 </resources>
