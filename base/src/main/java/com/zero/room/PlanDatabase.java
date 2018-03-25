@@ -15,21 +15,6 @@ import com.zero.room.entity.Sign;
  */
 @Database(entities = {Plan.class,Sign.class}, version = 1)
 public abstract class PlanDatabase extends RoomDatabase {
-    private static volatile PlanDatabase INSTANCE;
-
     public abstract PlanDao planDao();
     public abstract SignDao signDao();
-
-    public static PlanDatabase getInstance(Context context) {
-        if (INSTANCE == null) {
-            synchronized (PlanDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            PlanDatabase.class, "do_plan.db")
-                            .build();
-                }
-            }
-        }
-        return INSTANCE;
-    }
 }

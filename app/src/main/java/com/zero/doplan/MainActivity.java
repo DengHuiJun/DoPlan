@@ -216,7 +216,6 @@ public class MainActivity extends BaseActionBarActivity implements HomeFragment.
 
                 mToolbarAddIv.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_actionbar_done));
                 mToolbarTitleTv.setText("发现");
-
                 break;
 
             case CLICK_MSG:

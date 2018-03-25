@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.zero.doplan.util.SharePreferencesUtils;
+import com.zero.room.DBManager;
+
 /**
  * Created by Allen.D on 17/1/10.
  */
@@ -27,7 +30,12 @@ public class AppContext extends Application {
     }
 
     private void initDataBase() {
+        DBManager.INSTANCE.init(this);
 
+        if (!SharePreferencesUtils.getBoolean("INIT_DB", false)) {
+            DBManager.INSTANCE.firstInit();
+            SharePreferencesUtils.putBoolean("INIT_DB", true);
+        }
     }
 
 }

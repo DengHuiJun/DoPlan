@@ -24,7 +24,7 @@ import android.content.Context;
 public class Injection {
 
     public static PlanDataSource provideUserDataSource(Context context) {
-        PlanDatabase database = PlanDatabase.getInstance(context);
+        PlanDatabase database = DBManager.db;
         return new LocalPlanDataSource(database.planDao(), database.signDao());
     }
 
