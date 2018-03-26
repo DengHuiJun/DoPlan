@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -61,15 +60,13 @@ class HomeFragment : BaseObserverFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_home, container, false)
-
-        return view
+        return inflater?.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = Injection.provideViewModelFactory(activity)
+        val factory = Injection.provideViewModelFactory()
         mViewModel = ViewModelProviders.of(this, factory).get(PlanViewModel::class.java)
 
         mAdapter = PlanListAdapter(activity, mPlanList)

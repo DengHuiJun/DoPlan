@@ -17,10 +17,12 @@ import io.reactivex.Flowable;
 @Dao
 public interface SignDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.FAIL)
     void insertOrUpdate(Sign sign);
 
     @Query("SELECT * FROM t_sign WHERE planId = :id")
     Flowable<List<Sign>> getSigns(long id);
 
+    @Query("SELECT * FROM t_sign WHERE planId = :pid and keyTodayTime = :time")
+    Sign getSignByTime(long pid, long time);
 }

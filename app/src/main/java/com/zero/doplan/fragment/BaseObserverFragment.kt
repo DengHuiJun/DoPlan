@@ -19,9 +19,9 @@ abstract class BaseObserverFragment : Fragment() {
     private lateinit var mObserver: FragmentEventObserver
     protected lateinit var mContext: Context
 
-    protected val group: String
-        get() = NotificationCenter.DEFAULT_GROUP
-
+    protected fun getMyGroup(): String {
+        return NotificationCenter.DEFAULT_GROUP
+    }
 
 
 
@@ -73,7 +73,7 @@ abstract class BaseObserverFragment : Fragment() {
         override fun getGroup(): String {
             val fragment = mFragment.get()
 
-            return fragment?.group ?: NotificationCenter.DEFAULT_GROUP
+            return fragment?.getMyGroup() ?: NotificationCenter.DEFAULT_GROUP
 
         }
     }

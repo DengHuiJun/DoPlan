@@ -16,20 +16,18 @@
 
 package com.zero.room;
 
-import android.content.Context;
-
 /**
  * Enables injection of data sources.
  */
 public class Injection {
 
-    public static PlanDataSource provideUserDataSource(Context context) {
+    public static PlanDataSource provideUserDataSource() {
         PlanDatabase database = DBManager.db;
         return new LocalPlanDataSource(database.planDao(), database.signDao());
     }
 
-    public static ViewModelFactory provideViewModelFactory(Context context) {
-        PlanDataSource dataSource = provideUserDataSource(context);
+    public static ViewModelFactory provideViewModelFactory() {
+        PlanDataSource dataSource = provideUserDataSource();
         return new ViewModelFactory(dataSource);
     }
 }

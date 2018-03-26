@@ -82,7 +82,7 @@ public class AddFragment extends Fragment implements DatePickDialogFragment.Pick
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mViewModelFactory = Injection.provideViewModelFactory(getActivity());
+        mViewModelFactory = Injection.provideViewModelFactory();
         mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(PlanViewModel.class);
         mStartTime = mEndTime = System.currentTimeMillis();
     }

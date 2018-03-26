@@ -17,6 +17,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_actionbar_add"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:backgroundTint="@color/colorAccent" />
 
 </android.support.design.widget.CoordinatorLayout>

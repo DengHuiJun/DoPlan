@@ -36,10 +36,10 @@ public class PlanViewModel extends ViewModel {
         });
     }
 
-    public Completable insertSign(final Sign sign) {
-        return Completable.fromAction(() -> {
-            mDataSource.insertOrUpdateSign(sign);
-        });
-    }
+//    public Completable insertSign(final Sign sign) {
+//        return Completable.fromAction(() -> {
+//            mDataSource.insertOrUpdateSign(sign);
+//        });
+//    }
 
 }

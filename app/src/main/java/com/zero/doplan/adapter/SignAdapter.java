@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zero.doplan.R;
-import com.zero.doplan.util.TimeUtil;
+import com.zero.base.TimeUtil;
 import com.zero.room.entity.Sign;
 
 import java.util.List;

@@ -88,7 +88,7 @@ public class SignFragment extends Fragment {
             mPlanId = args.getLong(Constant.KEY_PLAN_ID);
         }
 
-        ViewModelFactory factory = Injection.provideViewModelFactory(getActivity());
+        ViewModelFactory factory = Injection.provideViewModelFactory();
         mViewModel = ViewModelProviders.of(this, factory).get(PlanViewModel.class);
 
         LogUtil.d(TAG + "get planId:" + mPlanId);
@@ -169,13 +169,13 @@ public class SignFragment extends Fragment {
         }
         sign.setSignTime(time);
 
-        mViewModel.insertSign(sign)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        () -> Snackbar.make(mCalendarView, "保存成功", Snackbar.LENGTH_SHORT).show(),
-                        t -> {}
-                );
+//        mViewModel.insertSign(sign)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        () -> Snackbar.make(mCalendarView, "保存成功", Snackbar.LENGTH_SHORT).show(),
+//                        t -> {}
+//                );
     }
 
     @Override

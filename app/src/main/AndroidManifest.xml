@@ -58,15 +58,11 @@
 
         <activity android:name=".PlanCenterActivity" />
         <activity android:name=".SignRecordActivity" />
-        <activity android:name=".KtActivity" />
+
         <activity
             android:name=".ui.AddOrEditPlanActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/BaseAppTheme"></activity>
     </application>
 
 </manifest>

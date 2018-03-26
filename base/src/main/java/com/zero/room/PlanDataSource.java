@@ -20,5 +20,5 @@ public interface PlanDataSource {
 
     void insertOrUpdatePlan(Plan plan);
 
-    void insertOrUpdateSign(Sign sign);
+    void insertOrUpdateSign(long planId);
 }

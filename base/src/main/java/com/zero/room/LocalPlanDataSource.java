@@ -1,5 +1,6 @@
 package com.zero.room;
 
+import com.zero.base.TimeUtil;
 import com.zero.room.dao.PlanDao;
 import com.zero.room.dao.SignDao;
 import com.zero.room.entity.Plan;
@@ -40,7 +41,12 @@ public class LocalPlanDataSource implements PlanDataSource {
     }
 
     @Override
-    public void insertOrUpdateSign(Sign sign) {
+    public void insertOrUpdateSign(long planId) {
+        Sign sign = new Sign();
+        long t = System.currentTimeMillis();
+        sign.setCreatedTime(t);
+        sign.setKeyTodayTime(TimeUtil.getTodayKey());
+        sign.setPlanId(planId);
         mSignDao.insertOrUpdate(sign);
     }
 }
