@@ -33,7 +33,7 @@ class HomeFragment : BaseObserverFragment() {
 
     private var mPlanList: List<Plan> = ArrayList()
 
-    private var mAdapter: PlanListAdapter? = null
+    private lateinit var mAdapter: PlanListAdapter
 
     private var mViewModel: PlanViewModel? = null
 
@@ -44,7 +44,7 @@ class HomeFragment : BaseObserverFragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list ->
                     mPlanList = list
-                    mAdapter!!.setItems(mPlanList)
+                    mAdapter.setItems(mPlanList)
                 }
                 ) { throwable -> Log.e("home", "all plans", throwable) }
     }

@@ -11,6 +11,7 @@ import com.zero.doplan.R
 import com.zero.base.TimeUtil
 import com.zero.doplan.event.EventsType
 import com.zero.doplan.event.NotificationCenter
+import com.zero.doplan.helper.PlanCardHelper
 import com.zero.doplan.util.ToastUtil
 import com.zero.room.DBManager
 import com.zero.room.Injection
@@ -40,7 +41,7 @@ class PlanListAdapter(private val mContext: Context, private var mItems: List<Pl
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val p = mItems[position]
 
-        holder.typeTv.text = "type:" + p.planType
+        holder.typeTv.text = PlanCardHelper.getTypeLabel(p.planType)
         val c = p.content + ":" + p.goals
         holder.contentTv.text = c
 
@@ -85,7 +86,7 @@ class PlanListAdapter(private val mContext: Context, private var mItems: List<Pl
     inner class ItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         internal var typeTv: TextView = v.findViewById(R.id.xTypeTv)
         internal var contentTv: TextView = v.findViewById(R.id.xContentTv)
-        internal var signBtn: Button = v.findViewById(R.id.xSignBtn)
+        internal var signBtn: TextView = v.findViewById(R.id.xSignBtn)
         internal var keepDayTv: TextView = v.findViewById(R.id.xKeepDayTv)
         internal var countDownTv: TextView = v.findViewById(R.id.xCountDownTv)
         internal var planPb: View = v.findViewById(R.id.xProcessV)

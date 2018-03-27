@@ -2,8 +2,8 @@
     <string name="app_name">DoPlan</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
 
-    <string name="keep_day">坚持%d天</string>
-    <string name="plan_time_and_distance">距离完成时间：%1s,还有%2d天</string>
+    <string name="keep_day">已坚持%d天</string>
+    <string name="plan_time_and_distance">距离：%1s，剩余%2d天</string>
 
     <string name="action_settings">Settings</string>
 </resources>
