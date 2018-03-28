@@ -6,4 +6,7 @@
     <string name="plan_time_and_distance">距离：%1s，剩余%2d天</string>
 
     <string name="action_settings">Settings</string>
+
+
+    <string name="abService">DoPlan自动更新</string>
 </resources>
