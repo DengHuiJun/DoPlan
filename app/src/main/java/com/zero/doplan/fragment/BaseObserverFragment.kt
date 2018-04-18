@@ -71,10 +71,8 @@ abstract class BaseObserverFragment : Fragment() {
         }
 
         override fun getGroup(): String {
-            val fragment = mFragment.get()
-
-            return fragment?.getMyGroup() ?: NotificationCenter.DEFAULT_GROUP
-
+//            val fragment = mFragment.get()
+            return NotificationCenter.DEFAULT_GROUP
         }
     }
 
