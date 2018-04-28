@@ -57,10 +57,8 @@ class HomeFragment : BaseObserverFragment() {
         return arrayOf(EventsType.PLAN_ADD_EVENT, EventsType.PLAN_REFRESH_EVENT)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater?.inflate(R.layout.fragment_home, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -69,7 +67,7 @@ class HomeFragment : BaseObserverFragment() {
         val factory = Injection.provideViewModelFactory()
         mViewModel = ViewModelProviders.of(this, factory).get(PlanViewModel::class.java)
 
-        mAdapter = PlanListAdapter(activity, mPlanList)
+        mAdapter = PlanListAdapter(mPlanList)
         homeRv.layoutManager = LinearLayoutManager(activity)
         homeRv.adapter = mAdapter
 

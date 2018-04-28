@@ -31,7 +31,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
     private var mEnabled = true
     private var mWithText = false
 
-    protected var mContext: Context? = null
+    protected lateinit var mContext: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -197,7 +197,7 @@ abstract class BaseActionBarActivity : AppCompatActivity(), View.OnClickListener
         setRightMenuIcon(ContextCompat.getDrawable(mContext, iconRes))
     }
 
-    protected fun setRightMenuIcon(iconDrawable: Drawable) {
+    protected fun setRightMenuIcon(iconDrawable: Drawable?) {
         mMenuIconDrawable = iconDrawable
         if (!mVisible) {
             mVisible = true

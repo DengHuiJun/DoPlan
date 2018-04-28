@@ -17,20 +17,16 @@ import java.lang.ref.WeakReference
 abstract class BaseObserverFragment : Fragment() {
 
     private lateinit var mObserver: FragmentEventObserver
-    protected lateinit var mContext: Context
+    protected  var mContext: Context? = activity
 
     protected fun getMyGroup(): String {
         return NotificationCenter.DEFAULT_GROUP
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mObserver = FragmentEventObserver(this)
         registerEventObserver(mObserver)
-
-        mContext = activity
     }
 
     override fun onDestroy() {

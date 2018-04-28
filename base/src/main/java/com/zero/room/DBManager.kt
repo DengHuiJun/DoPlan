@@ -18,8 +18,8 @@ object DBManager {
     }
 
     fun firstInit() {
-//        db.planDao().insertPlan(getPlan(100,"这是一个示例,阅读《迷宫》",1521986865000,1522986865000))
-//        db.planDao().insertPlan(getPlan(200,"这是一个示例,阅读《乌合之众》",1521986865000,1522986865000))
+        db.planDao().insertPlan(getPlan(100,"这是一个示例,阅读《迷宫》",1521986865000,1522986865000))
+        db.planDao().insertPlan(getPlan(200,"这是一个示例,阅读《乌合之众》",1521986865000,1522986865000))
 //        db.planDao().insertPlan(getPlan(200,"这是一个示例,阅读《乌合之众》",1521986865000,1522986865000))
 //        db.planDao().insertPlan(getPlan(200,"这是一个示例,阅读《乌合之众》",1521986865000,1522986865000))
 //        db.planDao().insertPlan(getPlan(200,"这是一个示例,阅读《乌合之众》",1521986865000,1522986865000))

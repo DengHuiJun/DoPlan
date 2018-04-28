@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.zero.doplan.R
 import com.zero.base.TimeUtil
+import com.zero.doplan.AppContext
 import com.zero.doplan.event.EventsType
 import com.zero.doplan.event.NotificationCenter
 import com.zero.doplan.helper.PlanCardHelper
@@ -26,7 +27,7 @@ import io.reactivex.schedulers.Schedulers
  * Created by allen on 2017/7/12.
  */
 
-class PlanListAdapter(private val mContext: Context, private var mItems: List<Plan>) : RecyclerView.Adapter<PlanListAdapter.ItemViewHolder>() {
+class PlanListAdapter(private var mItems: List<Plan>) : RecyclerView.Adapter<PlanListAdapter.ItemViewHolder>() {
 
     fun setItems(items: List<Plan>) {
         mItems = items
@@ -34,7 +35,7 @@ class PlanListAdapter(private val mContext: Context, private var mItems: List<Pl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(mContext).inflate(R.layout.plan_item, parent, false)
+        val view = LayoutInflater.from(AppContext.sContext).inflate(R.layout.plan_item, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -72,10 +73,10 @@ class PlanListAdapter(private val mContext: Context, private var mItems: List<Pl
         DBManager.db.signDao().getSigns(p.id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     val keepDay = it.size
-                    holder.keepDayTv.text = mContext.getString(R.string.keep_day, keepDay)
+                    holder.keepDayTv.text = AppContext.sContext.getString(R.string.keep_day, keepDay)
                 }
 
-        holder.countDownTv.text = mContext.getString(R.string.plan_time_and_distance,
+        holder.countDownTv.text = AppContext.sContext.getString(R.string.plan_time_and_distance,
                 TimeUtil.getFormatDate(p.endTime), TimeUtil.getDaysByTwoTime(System.currentTimeMillis(), p.endTime))
     }
 

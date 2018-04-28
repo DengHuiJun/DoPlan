@@ -10,13 +10,8 @@ import com.zero.doplan.R
 
 class MeFragment : Fragment() {
 
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_me, container, false)
-        return view
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_me, container, false)
     }
-
 
 }// Required empty public constructor

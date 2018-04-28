@@ -10,4 +10,5 @@
 
 .idea/modules.xml
 .idea/misc.xml
+.idea/
 app/debug/**
