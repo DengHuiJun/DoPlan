@@ -7,7 +7,6 @@
     android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
     android:gravity="center_vertical"
-    app:layout_collapseMode="pin"
     app:popupTheme="@style/BaseAppTheme.PopupOverlay"
     app:contentInsetStart="0dip"
     app:contentInsetLeft="0dip"
@@ -44,6 +43,7 @@
                 android:layout_gravity="center"
                 android:background="@color/toolbarSelectBg"
                 android:gravity="center"
+                android:textColor="@color/fontPrimary"
                 android:text="正在进行" />
 
             <View
@@ -59,6 +59,7 @@
                 android:layout_gravity="center"
                 android:background="@color/toolbarSelectBg"
                 android:gravity="center"
+                android:textColor="@color/fontPrimary"
                 android:text="今日打卡" />
 
         </LinearLayout>
